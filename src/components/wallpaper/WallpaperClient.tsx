@@ -43,7 +43,7 @@ export default function WallpaperClient({ data }: Props) {
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="absolute bottom-20 right-8 bg-black/80 backdrop-blur-xl border border-white/10 p-2 rounded-xl flex flex-col gap-2 min-w-[150px]"
+      className="absolute top-20 right-8 bg-black/80 backdrop-blur-xl border border-white/10 p-2 rounded-xl flex flex-col gap-2 min-w-[150px]"
     >
       <div className="text-xs text-gray-400 px-2 py-1 uppercase tracking-wider">添加组件</div>
       <button onClick={() => addWidget('clock')} className="flex items-center gap-2 px-3 py-2 hover:bg-white/10 rounded-lg text-sm text-left"><LayoutGrid size={16}/> 时钟</button>
@@ -89,6 +89,7 @@ export default function WallpaperClient({ data }: Props) {
          {/* WidgetLayer 内部需要开启 pointer-events-auto */}
          <WidgetLayer />
       </div>
+      
 
       {/* --- 层级 3: 顶部导航 UI (可隐藏) --- */}
       <AnimatePresence>
@@ -109,12 +110,18 @@ export default function WallpaperClient({ data }: Props) {
             </Link>
 
             <div className="flex gap-3">
-              <button className="p-3 bg-black/30 backdrop-blur-md rounded-full border border-white/10 hover:bg-white hover:text-black transition-all">
+              <button 
+                onClick={(e) => { e.stopPropagation(); setShowMenu(!showMenu); }}
+                className="p-3 bg-black/30 backdrop-blur-md rounded-full border border-white/10 hover:bg-white hover:text-black transition-all"
+              >
                 <Settings size={20} />
               </button>
             </div>
+
           </motion.header>
         )}
+             {showMenu && <WidgetMenu />}
+
       </AnimatePresence>
 
       {/* --- 层级 3: 底部信息 UI (可隐藏) --- */}
@@ -150,35 +157,6 @@ export default function WallpaperClient({ data }: Props) {
         )}
       </AnimatePresence>
 
-      {/* UI Controls */}
-      <AnimatePresence>
-        {showUI && (
-          <>
-             {/* Header ... */}
-             
-             {/* Footer Modified */}
-             <motion.footer className="...">
-                {/* Left info ... */}
-                
-                <div className="flex gap-4 relative">
-                   {/* 添加组件按钮 */}
-                   <div className="relative">
-                      {showMenu && <WidgetMenu />}
-                      <button 
-                        onClick={(e) => { e.stopPropagation(); setShowMenu(!showMenu); }}
-                        className="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-lg font-semibold transition-all"
-                      >
-                        <Plus size={20} />
-                        添加组件
-                      </button>
-                   </div>
-                   
-                   <button className="...">应用到桌面</button>
-                </div>
-             </motion.footer>
-          </>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
