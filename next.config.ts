@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
       // 如果你后续用了对象存储（如 R2 或 S3），把你的存储域名也加在这里
       // {
       //   protocol: 'https',

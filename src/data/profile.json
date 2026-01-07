@@ -1,0 +1,41 @@
+{
+  "basicInfo": {
+    "name": "Alex Developer",
+    "title": "前端开发工程师 / 创意编程爱好者",
+    "avatar": "https://avatars.githubusercontent.com/u/93506099?v=4",
+    "bio": "热衷于探索 Web 技术的无限可能。专注于打造高性能、高颜值的交互体验。喜欢摄影、游戏和开源。",
+    "location": "上海, 中国",
+    "email": "alex@example.com",
+    "github": "https://github.com",
+    "social": [
+      { "name": "GitHub", "url": "https://github.com" },
+      { "name": "Twitter", "url": "https://twitter.com" },
+      { "name": "Bilibili", "url": "https://bilibili.com" }
+    ]
+  },
+  "skills": {
+    "frontend": ["React", "Next.js", "Vue 3", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js"],
+    "backend": ["Node.js", "NestJS", "PostgreSQL", "Prisma"],
+    "tools": ["Git", "Docker", "Figma", "Vercel", "VS Code"]
+  },
+  "experience": [
+    {
+      "company": "未来科技工作室",
+      "role": "高级前端开发",
+      "period": "2023 - 至今",
+      "desc": "负责公司核心 SaaS 产品的重构，引入 Next.js 提升了 40% 的首屏加载速度。设计并落地了内部组件库。"
+    },
+    {
+      "company": "创意互动有限公司",
+      "role": "前端开发工程师",
+      "period": "2021 - 2023",
+      "desc": "主导多个 H5 营销活动页面的开发，使用 WebGL 实现复杂的 3D 交互效果，获得年度最佳创意奖。"
+    }
+  ],
+  "toolbox": [
+    { "name": "VS Code", "desc": "主力编辑器", "icon": "code" },
+    { "name": "ChatGPT", "desc": "AI 结对编程伙伴", "icon": "bot" },
+    { "name": "Figma", "desc": "UI/UX 设计", "icon": "pen" },
+    { "name": "MacBook Pro", "desc": "生产力工具", "icon": "laptop" }
+  ]
+}

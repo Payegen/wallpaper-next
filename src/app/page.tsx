@@ -63,6 +63,12 @@ export default function Home() {
             <button className="px-8 py-3 rounded-full border border-white/20 hover:bg-white/10 transition-all">
               关于项目
             </button>
+
+            <Link href="/about">
+    <button className="px-8 py-3 rounded-full border border-white/20 text-white hover:bg-white/10 transition-all">
+      关于我
+    </button>
+  </Link>
           </motion.div>
         </motion.div>
 

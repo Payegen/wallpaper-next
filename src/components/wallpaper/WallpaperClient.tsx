@@ -1,14 +1,13 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Download, Share2, Expand, Settings } from 'lucide-react';
+import { ArrowLeft, Download, Share2, LayoutGrid, Settings } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { WallpaperData } from '@/lib/mock';
 import WidgetLayer from '@/components/widgets/WidgetLayer'; // 稍后创建这个组件
-import { Plus, LayoutGrid } from 'lucide-react';
-import { useWidgetStore, WidgetType } from '@/store/widgetStore';
+import { useWidgetStore } from '@/store/widgetStore';
 
 interface Props {
   data: WallpaperData;
@@ -27,23 +26,24 @@ export default function WallpaperClient({ data }: Props) {
     
     timerRef.current = setTimeout(() => {
       setShowUI(false);
+      setShowMenu(false); // 隐藏菜单
     }, 3000);
   };
 
   // 初始化定时器
   useEffect(() => {
-    handleMouseMove();
+    // handleMouseMove();
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
   }, []);
 
   // 一个简单的菜单组件
-  const WidgetMenu = () => (
+  const WidgetMenu = useMemo(() => (
     <motion.div 
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      className="absolute top-20 right-8 bg-black/80 backdrop-blur-xl border border-white/10 p-2 rounded-xl flex flex-col gap-2 min-w-[150px]"
+      className="absolute top-20 right-8 bg-black/80 backdrop-blur-xl border border-white/10 p-2 rounded-xl flex flex-col gap-2 min-w-37.5"
     >
       <div className="text-xs text-gray-400 px-2 py-1 uppercase tracking-wider">添加组件</div>
       <button onClick={() => addWidget('clock')} className="flex items-center gap-2 px-3 py-2 hover:bg-white/10 rounded-lg text-sm text-left"><LayoutGrid size={16}/> 时钟</button>
@@ -51,7 +51,8 @@ export default function WallpaperClient({ data }: Props) {
       <button onClick={() => addWidget('search')} className="flex items-center gap-2 px-3 py-2 hover:bg-white/10 rounded-lg text-sm text-left"><LayoutGrid size={16}/> 搜索栏</button>
       <button onClick={() => addWidget('todo')} className="flex items-center gap-2 px-3 py-2 hover:bg-white/10 rounded-lg text-sm text-left"><LayoutGrid size={16}/> 待办清单</button>
     </motion.div>
-  );
+  ), [addWidget]);
+  
 
   return (
     <div 
@@ -95,6 +96,7 @@ export default function WallpaperClient({ data }: Props) {
       <AnimatePresence>
         {showUI && (
           <motion.header
+            key={'client-header'}
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -100, opacity: 0 }}
@@ -120,7 +122,8 @@ export default function WallpaperClient({ data }: Props) {
 
           </motion.header>
         )}
-             {showMenu && <WidgetMenu />}
+        
+        {showMenu && WidgetMenu}
 
       </AnimatePresence>
 
@@ -128,6 +131,7 @@ export default function WallpaperClient({ data }: Props) {
       <AnimatePresence>
         {showUI && (
           <motion.footer
+          key={'client-footer'}
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
