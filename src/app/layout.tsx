@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { Navbar } from "@/components/layout/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN" className="dark">
+    /* 
+      1. ✅ 移除 className="dark" 
+      2. ✅ 保留 suppressHydrationWarning (这正是为了消除 next-themes 动态修改 class 带来的警告)
+    */
+    <html lang="zh-CN" suppressHydrationWarning>
       <body
         className={cn(`${geistSans.variable} ${geistMono.variable} antialiased`, 
           "bg-black text-white antialiased")}
@@ -36,7 +41,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <Navbar />
+          <main className="relative w-full min-h-screen">
+            {children}
+          </main>
+          {/* {children} */}
         </ThemeProvider>
         {/* {children} */}
       </body>

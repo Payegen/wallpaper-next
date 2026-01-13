@@ -35,7 +35,7 @@ export default function GalleryPage() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {wallpapers.map((wp) => (
           <Link href={`/wallpaper/${wp.id}`} key={wp.id} className="group block">
-            <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-gray-900 border border-white/5 transition-transform duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-purple-500/20">
+            <div className="relative aspect-video rounded-xl overflow-hidden bg-gray-900 border border-white/5 transition-transform duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-purple-500/20">
               
               {/* 图片/封面 */}
               <Image 
@@ -53,7 +53,7 @@ export default function GalleryPage() {
               )}
 
               {/* 悬停遮罩 */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                 <h3 className="text-white font-semibold text-lg">{wp.title}</h3>
                 <p className="text-white/60 text-xs mt-1">点击预览桌面效果</p>
               </div>

@@ -1,8 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { ArrowRight, Layers, MonitorPlay } from 'lucide-react';
 import Link from 'next/link';
+import { useEffect, useRef } from 'react';
 
 // 动画变体配置
 const fadeInUp = {
@@ -20,8 +21,36 @@ const stagger = {
 };
 
 export default function Home() {
+
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef, // 如果需要，可以指定一个元素作为滚动目标
+  }); // 如果需要，可以使用滚动位置做一些交互
+  
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    console.log("当前滚动进度:", latest);
+  });
+  useEffect(
+    () => {
+      console.log(scrollYProgress);
+      
+    },[ scrollYProgress]
+  )
   return (
-    <main className="min-h-screen flex flex-col">
+    <main className="min-h-screen flex flex-col" ref={containerRef}>
+
+      <motion.div style={{
+        scaleX: scrollYProgress,
+        position: "fixed",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: 10,
+                    originX: 0,
+                    backgroundColor: "#ff0088",
+      }}>
+          {scrollYProgress}
+      </motion.div>
       {/* --- Hero Section: 全屏首屏 --- */}
       <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
         
