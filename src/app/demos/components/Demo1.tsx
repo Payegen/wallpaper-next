@@ -8,7 +8,7 @@ import { ReactLenis} from 'lenis/react'
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
-export default function Demo1() {
+export default function ScrollParallax() {
   // 创建一个 ref 指向整个滚动容器（如果需要特定区域）
   // 这里我们直接监听 window 滚动，所以不需要给 target
   const containerRef = useRef<HTMLDivElement>(null);
