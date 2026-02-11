@@ -1,6 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+本项目基于 [Next.js](https://nextjs.org) 脚手架创建 [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+[Prisma](https://prisma.io) 用于数据库操作
+
+数据库使用`postgre` 服务商选择neon 配置参考 [neon](https://github.com/neondatabase/neon/tree/main/examples/prisma)
+
+对象存储托管与 CF
 ## Getting Started
+
+数据库使用的 ·Neon· 修改.env 配置文件
+运行以下命令生成 Prisma 客户端：
+```bash
+npx prisma generate
+```
+同步数据库：
+```bash
+npx prisma db push
+```
+
 
 First, run the development server:
 

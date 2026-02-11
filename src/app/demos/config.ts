@@ -30,4 +30,11 @@ export const demos: DemoConfig[] = [
     icon: Palette,
     color: "from-green-500/20 to-emerald-500/20",
   },
+  {
+    slug: "demo-test",
+    title: "test",
+    description: "测试当前 Tailwind V4 主题变量在不同组件下的表现。",
+    icon: Palette,
+    color: "from-green-500/20 to-emerald-500/20",
+  },
 ];

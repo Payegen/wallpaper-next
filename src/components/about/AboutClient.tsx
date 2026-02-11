@@ -156,7 +156,7 @@ export default function AboutClient({ data }: { data: ProfileData }) {
             {/* 装备库 */}
             <motion.section variants={itemVariants} className="bg-card/50 border border-border rounded-3xl p-8">
               <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-                <Cpu className="text-orange-500" /> 装备库
+                <Cpu className="text-orange-500" /> 工具库
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {toolbox.map((tool: any, idx: number) => (

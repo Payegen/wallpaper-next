@@ -1,6 +1,7 @@
-import { getMockWallpaper } from '@/lib/mock';
+import { getMockWallpaper, WallpaperData } from '@/lib/mock';
 import WallpaperClient from '@/components/wallpaper/WallpaperClient';
 import { notFound } from 'next/navigation';
+import { getWallpaperById } from '@/app/actions/wallpaper';
 
 // Next.js 15 的 params 是 Promise，或者在 Next 14 中直接使用
 type Props = {
@@ -9,14 +10,21 @@ type Props = {
 
 export default async function WallpaperPage({ params }: Props) {
     const { id } = await params
-    console.log('my log info',id);
+
+    const { success, data, error } = await getWallpaperById(id)
+    console.log('my log info',id, success, data);
 
   // 模拟获取数据
-  const data = getMockWallpaper(id);
+  const mockdata = getMockWallpaper(id);
 
-  if (!data) {
+  if (!success) {
+    console.log(error,'myerr');
+    
+    if(!data) {
+      return <WallpaperClient data={mockdata} />;
+    }
     return notFound();
   }
 
-  return <WallpaperClient data={data} />;
+  return <WallpaperClient data={data as WallpaperData} />;
 }

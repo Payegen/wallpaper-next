@@ -12,7 +12,7 @@ const DemoComponents: Record<string, React.ComponentType> = {
   'framer-buttons': dynamic(() => import('../components/FramerButtons')),
   // 如果没有组件，可以暂时渲染一个占位符
   'theme-showcase': () => <div className="p-10 text-center">开发中...</div>,
-  'demo1': dynamic(() => import('../components/Demo1')),
+  'demo-test': dynamic(() => import('../components/demo1')),
 };
 
 interface Props {

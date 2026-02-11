@@ -75,6 +75,7 @@ export default function WallpaperClient({ data }: Props) {
             src={data.url}
             alt={data.title}
             fill
+            unoptimized
             className="object-cover"
             priority // 详情页图片必须优先加载
             quality={90}

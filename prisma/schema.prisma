@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+//url      = env("DATABASE_URL") // 在 .env 中配置 Neon 的链接
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+}
+
+
+// 壁纸模型
+model Wallpaper {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  url         String   // 图片在 R2 的完整访问链接
+  type        String   @default("image") // image 或 video
+  resolution  String?  // 如 "4K", "1080P"
+  tags        String[] // 简单的数组存标签，或者关联 Tag 表
+  downloads   Int      @default(0)
+  likes       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
