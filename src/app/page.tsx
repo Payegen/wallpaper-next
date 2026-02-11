@@ -76,7 +76,7 @@ export default function Home() {
             variants={fadeInUp}
             className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10"
           >
-            不仅仅是壁纸。我们将 Steam 风格的高清动态壁纸与实用的 Web 小工具完美融合，
+            不仅仅是壁纸。我们将wallpaper风格的高清动态壁纸与实用的 Web 小工具完美融合，
             在浏览器中打造你的专属工作台。
           </motion.p>
 
