@@ -7,7 +7,8 @@
 对象存储托管与 CF
 ## Getting Started
 
-数据库使用的 ·Neon· 修改.env 配置文件
+数据库使用的 ·Neon· 
+修改.env 配置文件: `参考.env template 创建.env`
 运行以下命令生成 Prisma 客户端：
 ```bash
 npx prisma generate
@@ -16,7 +17,6 @@ npx prisma generate
 ```bash
 npx prisma db push
 ```
-
 
 First, run the development server:
 
@@ -45,8 +45,3 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
