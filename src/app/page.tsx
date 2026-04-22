@@ -1,5 +1,6 @@
 'use client';
 
+import Carousel from '@/components/ui/Carousel';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { ArrowRight, Layers, MonitorPlay } from 'lucide-react';
 import Link from 'next/link';
@@ -141,7 +142,8 @@ export default function Home() {
         {/* 这里是一个示意图占位，实际开发时可以用 Next/Image 放截图 */}
         <div className="relative aspect-video bg-linear-to-tr from-gray-800 to-gray-900 rounded-2xl border border-white/10 overflow-hidden group">
             <div className="absolute inset-0 flex items-center justify-center text-gray-600 font-mono">
-                [ 预览图 / 3D 模型演示区 ]
+                {/* [ 预览图 / 3D 模型演示区 ] */}
+<Carousel/>
             </div>
         </div>
       </section>

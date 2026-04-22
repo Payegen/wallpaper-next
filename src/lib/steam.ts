@@ -41,6 +41,9 @@ export async function getSteamWorkshopDetails(publishedFileId: string) {
 export function extractSteamId(url: string): string | null {
   // 支持格式: https://steamcommunity.com/sharedfiles/filedetails/?id=3361033230
   const regex = /[?&]id=(\d+)/;
+ 
   const match = url.match(regex);
+  console.log(match,url,'data');
+  
   return match ? match[1] : null;
 }

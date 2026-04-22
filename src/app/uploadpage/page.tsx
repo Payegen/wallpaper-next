@@ -130,6 +130,7 @@ export default function UploadPage() {
         title,
         url: publicUrl,
         type,
+        source: 'upload', // 本地上传标识为 'upload'
         resolution: "Unknown", // 后续优化：通过 JS 获取 image.naturalWidth
         description: description || undefined, // 传递描述
       });

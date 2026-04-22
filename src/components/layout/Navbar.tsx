@@ -1,17 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Home, Image as ImageIcon, Code2, User } from "lucide-react";
+import { Home, Image as ImageIcon, Code2, User, BookOpen, ChevronUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/ui/ModeToggle";
-
+import { Show, SignInButton, UserButton } from "@clerk/nextjs";
+import { useAdmin } from "@/hooks/useAuth";
 
 const navItems = [
   { name: "首页", path: "/", icon: Home },
   { name: "画廊", path: "/gallery", icon: ImageIcon },
+  { name: "文档", path: "/docs", icon: BookOpen },
   { name: "实验室", path: "/demos", icon: Code2 },
   { name: "关于", path: "/about", icon: User },
 ];
@@ -20,13 +22,32 @@ export function Navbar() {
   const pathname = usePathname();
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredPath, setHoveredPath] = useState<string | null>(null);
+  const { isAdmin } = useAdmin();
+  const navbarRef = useRef<HTMLDivElement>(null);
+
+  // 点击外部区域关闭菜单
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (navbarRef.current && !navbarRef.current.contains(event.target as Node)) {
+  //       setIsHovered(false);
+  //     }
+  //   };
+
+  //   // 只有在菜单展开时才添加监听器
+  //   if (isHovered) {
+  //     document.addEventListener("mousedown", handleClickOutside);
+  //   }
+
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [isHovered]);
 
   return (
     // 1. 触发容器：固定在顶部，高度较小，负责捕获鼠标
     <div 
+      ref={navbarRef}
       className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-2"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       {/* 2. 动画容器：根据状态改变大小 */}
       <motion.div
@@ -48,6 +69,7 @@ export function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="absolute inset-0 flex items-center justify-center"
+              onClick={() => setIsHovered(true)}
             >
                {/* 一个简单的横条，类似 iOS 底部条 */}
                <div className="w-12 h-1 bg-foreground/50 rounded-full" />
@@ -108,16 +130,47 @@ export function Navbar() {
                   );
                 })}
               </nav>
-
+          {isAdmin && (
+            <Link href="/uploadpage" className="text-primary font-bold">
+              发布壁纸
+            </Link>
+          )}
               {/* 分割线 */}
               <div className="w-px h-6 bg-border mx-1" />
 
+             
+              {/* 未登录时：显示纯净的文本登录按钮 */}
+              <Show when="signed-out">
+                <SignInButton mode="modal">
+                  <button className="text-sm font-medium px-4 py-2 hover:bg-muted rounded-full transition-colors">
+                    登录
+                  </button>
+                </SignInButton>
+              </Show>
+
+               <Show when="signed-in">
+               {/* afterSignOutUrl 确保退出登录后回到首页，而不是卡在当前受保护的页面 */}
+                <UserButton afterSignOutUrl="/" />
+              </Show>
+
+              {/* 分割线 */}
+              <div className="w-px h-6 bg-border mx-1" />
               {/* 主题切换 */}
               <ModeToggle />
+
+              {/* 收起按钮 */}
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsHovered(false)}
+                className="p-2 hover:bg-muted rounded-full transition-colors text-muted-foreground hover:text-foreground"
+                title="收起菜单"
+              >
+                <ChevronUp size={16} />
+              </motion.button>
             </motion.div>
           )}
         </AnimatePresence>
-
       </motion.div>
     </div>
   );

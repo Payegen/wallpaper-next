@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Download, Share2, LayoutGrid, Settings } from 'lucide-react';
+import { ArrowLeft, Download, Share2, LayoutGrid, Settings, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { WallpaperData } from '@/lib/mock';
@@ -18,6 +18,37 @@ export default function WallpaperClient({ data }: Props) {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const addWidget = useWidgetStore(state => state.addWidget); // 获取添加方法
   const [showMenu, setShowMenu] = useState(false); // 控制菜单显示
+
+  // 从 description 中提取 Steam ID
+  const steamId = useMemo(() => {
+    if (data.source !== 'steam' || !data.description) return null;
+    const match = data.description.match(/Steam ID: (\d+)/);
+    return match ? match[1] : null;
+  }, [data.source, data.description]);
+
+  // Steam 创意工坊链接
+  const steamUrl = steamId 
+    ? `https://steamcommunity.com/sharedfiles/filedetails/?id=${steamId}` 
+    : null;
+
+  // 下载壁纸到本地
+  const handleDownload = async () => {
+    try {
+      const response = await fetch(data.url);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${data.title}.${data.type === 'video' ? 'mp4' : 'jpg'}`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('下载失败:', error);
+      alert('下载失败，请稍后重试');
+    }
+  };
 
   // 核心逻辑：鼠标移动显示 UI，停止移动 3秒后隐藏 UI
   const handleMouseMove = () => {
@@ -146,14 +177,47 @@ export default function WallpaperClient({ data }: Props) {
                    {data.resolution}
                 </span>
                 <span>By {data.author}</span>
+                {/* 显示来源标识 */}
+                {data.source === 'steam' && (
+                  <span className="bg-blue-500/20 text-blue-300 px-2 py-1 rounded flex items-center gap-1">
+                    <ExternalLink size={12} />
+                    Steam 导入
+                  </span>
+                )}
+                {data.source === 'upload' && (
+                  <span className="bg-green-500/20 text-green-300 px-2 py-1 rounded flex items-center gap-1">
+                    <Download size={12} />
+                    用户上传
+                  </span>
+                )}
               </div>
             </div>
 
             <div className="flex gap-4">
-              <button className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-lg font-semibold transition-all shadow-lg shadow-blue-500/20">
-                <Download size={20} />
-                应用到桌面
-              </button>
+              {/* Steam 导入的壁纸：跳转到创意工坊 */}
+              {data.source === 'steam' && steamUrl && (
+                <a
+                  href={steamUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-lg font-semibold transition-all shadow-lg shadow-blue-500/20"
+                >
+                  <ExternalLink size={20} />
+                  在 Steam 创意工坊订阅
+                </a>
+              )}
+
+              {/* 用户上传的壁纸：下载到本地 */}
+              {data.source === 'upload' && (
+                <button 
+                  onClick={handleDownload}
+                  className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-lg font-semibold transition-all shadow-lg shadow-blue-500/20"
+                >
+                  <Download size={20} />
+                  下载到本地
+                </button>
+              )}
+
               <button className="p-3 bg-white/10 hover:bg-white/20 rounded-lg backdrop-blur-md transition-all">
                 <Share2 size={20} />
               </button>

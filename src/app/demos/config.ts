@@ -10,7 +10,7 @@ export interface DemoConfig {
 
 export const demos: DemoConfig[] = [
   {
-    slug: "scroll-parallax",
+    slug: "scrollParallax",
     title: "滚动视差首页",
     description: "复刻首页的视差滚动效果，分离背景层与内容层。",
     icon: ScrollText,
@@ -34,6 +34,13 @@ export const demos: DemoConfig[] = [
     slug: "demo-test",
     title: "test",
     description: "测试当前 Tailwind V4 主题变量在不同组件下的表现。",
+    icon: Palette,
+    color: "from-green-500/20 to-emerald-500/20",
+  },
+  {
+    slug: "loading",
+    title: "loadingpage",
+    description: "测试当前 loading 页面",
     icon: Palette,
     color: "from-green-500/20 to-emerald-500/20",
   },

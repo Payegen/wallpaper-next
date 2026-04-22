@@ -29,10 +29,42 @@ model Wallpaper {
   description String?
   url         String   // 图片在 R2 的完整访问链接
   type        String   @default("image") // image 或 video
+  source      String   @default("upload") // upload 或 steam
   resolution  String?  // 如 "4K", "1080P"
   tags        String[] // 简单的数组存标签，或者关联 Tag 表
   downloads   Int      @default(0)
   likes       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  collections Collection[] // 所属合集
+}
+
+// 合集模型
+model Collection {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  coverImage  String?  // 合集封面图片 URL
+  isPublic    Boolean  @default(true) // 是否公开
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  wallpapers  Wallpaper[] // 合集中的壁纸
+}
+
+// 文章/教程模型
+model Article {
+  id          String   @id @default(cuid())
+  slug        String   @unique // URL 友好的标识符
+  title       String
+  description String
+  content     String   // Markdown 内容
+  category    String   // tutorial, guide, announcement, tips
+  tags        String[]
+  author      String
+  readTime    Int      // 阅读时长(分钟)
+  coverImage  String?  // 封面图片 URL
+  featured    Boolean  @default(false) // 是否推荐
+  published   Boolean  @default(false) // 是否发布
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
