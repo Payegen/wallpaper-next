@@ -182,3 +182,4 @@ export default async function DocsAdminPage() {
     </div>
   );
 }
+export const dynamic = "force-dynamic";

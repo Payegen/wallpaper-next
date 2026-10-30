@@ -31,3 +31,4 @@ export default async function NewArticlePage() {
     />
   );
 }
+export const dynamic = "force-dynamic";
