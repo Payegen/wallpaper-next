@@ -21,12 +21,12 @@ interface CarouselProps {
 
 // 默认示例数据
 const DEFAULT_ITEMS: CarouselItem[] = [
-  { id: 1, color: 'from-pink-500 to-rose-500', title: 'Neon City' },
-  { id: 2, color: 'from-blue-500 to-cyan-500', title: 'Cyber Punk' },
-  { id: 3, color: 'from-purple-500 to-indigo-500', title: 'Deep Space' },
-  { id: 4, color: 'from-emerald-500 to-teal-500', title: 'Nature Zen' },
-  { id: 5, color: 'from-orange-500 to-amber-500', title: 'Sunset Glow' },
-  { id: 6, color: 'from-gray-800 to-slate-900', title: 'Dark Mode' },
+  { id: 1, color: 'from-sys-accent/20 to-sys-primary/20', title: 'Neon City' },
+  { id: 2, color: 'from-sys-info/20 to-sys-primary/10', title: 'Cyber Punk' },
+  { id: 3, color: 'from-sys-primary/20 to-sys-accent/10', title: 'Deep Space' },
+  { id: 4, color: 'from-sys-text-success/20 to-sys-info/10', title: 'Nature Zen' },
+  { id: 5, color: 'from-sys-text-warning/20 to-sys-accent/10', title: 'Sunset Glow' },
+  { id: 6, color: 'from-sys-bg-elevated to-sys-bg-page', title: 'Dark Mode' },
 ];
 
 export default function Carousel({ 
@@ -203,10 +203,10 @@ export default function Carousel({
                   />
                 ) : (
                   <div 
-                    className={`w-full h-full bg-gradient-to-br ${item.color || 'from-gray-700 to-gray-900'} flex items-center justify-center`}
+                    className={`w-full h-full bg-linear-to-br ${item.color || 'from-sys-bg-elevated to-sys-bg-page'} flex items-center justify-center`}
                   >
                     {item.title && (
-                      <h3 className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
+                      <h3 className="text-3xl md:text-4xl font-bold text-sys-text-base drop-shadow-sys-lg">
                         {item.title}
                       </h3>
                     )}
@@ -215,14 +215,14 @@ export default function Carousel({
 
                 {/* 文字信息 */}
                 {(item.title || item.description) && isActive && (
-                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-sys-media-bg/90 to-transparent">
                     {item.title && (
-                      <h3 className="text-2xl font-bold text-white mb-2">
+                      <h3 className="text-2xl font-bold text-sys-media-text mb-2">
                         {item.title}
                       </h3>
                     )}
                     {item.description && (
-                      <p className="text-sm text-gray-300">
+                      <p className="text-sm text-sys-media-muted">
                         {item.description}
                       </p>
                     )}
@@ -232,7 +232,7 @@ export default function Carousel({
                 {/* 非活动项遮罩 */}
                 <div 
                   className={`
-                    absolute inset-0 bg-black/30 transition-opacity duration-300
+                    absolute inset-0 bg-sys-media-bg/30 transition-opacity duration-300
                     ${isActive ? 'opacity-0' : 'opacity-100'}
                   `} 
                 />
@@ -245,7 +245,7 @@ export default function Carousel({
       {/* 左右控制按钮 */}
       <button
         onClick={handlePrev}
-        className="absolute top-1/2 -translate-y-1/2 left-4 z-10 p-3 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:bg-white hover:text-black transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        className="absolute top-1/2 -translate-y-1/2 left-4 z-10 p-3 rounded-full bg-sys-bg-surface/95 backdrop-blur-md border border-sys-border text-sys-text-base hover:bg-sys-bg-inverse hover:text-sys-text-inverse transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={isAnimating}
         aria-label="上一张"
       >
@@ -254,7 +254,7 @@ export default function Carousel({
 
       <button
         onClick={handleNext}
-        className="absolute top-1/2 -translate-y-1/2 right-4 z-10 p-3 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white hover:bg-white hover:text-black transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        className="absolute top-1/2 -translate-y-1/2 right-4 z-10 p-3 rounded-full bg-sys-bg-surface/95 backdrop-blur-md border border-sys-border text-sys-text-base hover:bg-sys-bg-inverse hover:text-sys-text-inverse transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={isAnimating}
         aria-label="下一张"
       >
@@ -270,8 +270,8 @@ export default function Carousel({
             className={`
               w-2 h-2 rounded-full transition-all duration-300
               ${getRealIndex(currentIndex) === index 
-                ? 'bg-white w-8' 
-                : 'bg-white/50 hover:bg-white/75'
+                ? 'bg-sys-media-text w-8'
+                : 'bg-sys-media-text/50 hover:bg-sys-media-text/75'
               }
             `}
             aria-label={`跳转到第 ${index + 1} 张`}
@@ -281,9 +281,9 @@ export default function Carousel({
 
       {/* 进度条（自动播放时显示） */}
       {autoPlay && (
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-sys-media-text/20">
           <motion.div
-            className="h-full bg-white"
+            className="h-full bg-sys-media-text"
             initial={{ width: '0%' }}
             animate={{ width: '100%' }}
             transition={{ 

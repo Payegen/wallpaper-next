@@ -39,12 +39,12 @@ export default function AboutClient({ data }: { data: ProfileData }) {
 //   }, []);
   
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+    <div className="min-h-screen bg-sys-bg-page text-sys-text-base transition-colors duration-300">
       {/* 顶部导航 */}
       <nav className="p-6 fixed top-0 left-0 w-full z-5 flex items-center justify-between">
         <Link 
           href="/" 
-          className="flex items-center gap-2 px-4 py-2 bg-background/50 backdrop-blur-md border border-border rounded-full hover:bg-muted transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-sys-bg-page/50 backdrop-blur-md border border-sys-border rounded-full hover:bg-sys-bg-surface transition-colors"
         >
           <ArrowLeft size={18} />
           <span className="text-sm font-medium">返回首页</span>
@@ -68,34 +68,34 @@ export default function AboutClient({ data }: { data: ProfileData }) {
           
           {/* --- 左侧：个人卡片 --- */}
           <motion.aside variants={itemVariants} className="lg:col-span-1">
-            <div className="bg-card border border-border rounded-3xl p-8 sticky top-24 backdrop-blur-sm shadow-sm">
-              <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-muted">
+            <div className="bg-sys-bg-surface border border-sys-border rounded-3xl p-8 sticky top-24 backdrop-blur-sm shadow-sys-sm">
+              <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-sys-bg-surface">
                 <Image src={basicInfo.avatar} alt={basicInfo.name} fill className="object-cover" />
               </div>
               
               <div className="text-center mb-6">
-                {/* 使用 bg-gradient-to-r (标准) */}
-                <h1 className="text-2xl font-bold mb-2 bg-linear-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+                {/* 使用 bg-linear-to-r (标准) */}
+                <h1 className="text-2xl font-bold mb-2 bg-linear-to-r from-sys-text-base to-sys-text-secondary bg-clip-text text-transparent">
                   {basicInfo.name}
                 </h1>
-                <p className="text-primary font-medium text-sm">{basicInfo.title}</p>
+                <p className="text-sys-primary font-medium text-sm">{basicInfo.title}</p>
               </div>
 
               <div className="space-y-4 mb-8">
-                <div className="flex items-center gap-3 text-muted-foreground text-sm justify-center">
+                <div className="flex items-center gap-3 text-sys-text-secondary text-sm justify-center">
                   <MapPin size={16} /> <span>{basicInfo.location}</span>
                 </div>
-                <div className="flex items-center gap-3 text-muted-foreground text-sm justify-center">
+                <div className="flex items-center gap-3 text-sys-text-secondary text-sm justify-center">
                   <Mail size={16} /> <span>{basicInfo.email}</span>
                 </div>
               </div>
 
-              <p className="text-muted-foreground text-sm leading-relaxed text-center mb-8 border-t border-border pt-6">
+              <p className="text-sys-text-secondary text-sm leading-relaxed text-center mb-8 border-t border-sys-border pt-6">
                 {basicInfo.bio}
               </p>
 
               <div className="flex justify-center gap-4">
-                <a href={basicInfo.github} target="_blank" className="p-3 bg-muted rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
+                <a href={basicInfo.github} target="_blank" className="p-3 bg-sys-bg-surface rounded-full hover:bg-sys-primary-hover hover:text-sys-primary-text transition-colors">
                   <Github size={20} />
                 </a>
               </div>
@@ -107,16 +107,16 @@ export default function AboutClient({ data }: { data: ProfileData }) {
           <div className="lg:col-span-2 space-y-8">
             
             {/* 技术栈 */}
-            <motion.section variants={itemVariants} className="bg-card/50 border border-border rounded-3xl p-8">
+            <motion.section variants={itemVariants} className="bg-sys-bg-surface/50 border border-sys-border rounded-3xl p-8">
               <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-                <Code2 className="text-blue-500" /> 技术栈
+                <Code2 className="text-sys-info" /> 技术栈
               </h2>
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-sm text-muted-foreground mb-3 uppercase tracking-wider font-semibold">Frontend</h3>
+                  <h3 className="text-sm text-sys-text-secondary mb-3 uppercase tracking-wider font-semibold">Frontend</h3>
                   <div className="flex flex-wrap gap-2">
                     {skills.frontend.map((skill: string) => (
-                      <span key={skill} className="px-3 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-300 border border-blue-500/20 rounded-lg text-sm">
+                      <span key={skill} className="px-3 py-1 bg-sys-info/10 text-sys-info text-sys-info border border-sys-info/20 rounded-lg text-sm">
                         {skill}
                       </span>
                     ))}
@@ -127,25 +127,25 @@ export default function AboutClient({ data }: { data: ProfileData }) {
             </motion.section>
 
             {/* 工作经历 */}
-            <motion.section variants={itemVariants} className="bg-card/50 border border-border rounded-3xl p-8">
+            <motion.section variants={itemVariants} className="bg-sys-bg-surface/50 border border-sys-border rounded-3xl p-8">
               <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-                <Calendar className="text-green-500" /> 经历
+                <Calendar className="text-sys-text-success" /> 经历
               </h2>
               
               <div className="space-y-8 relative pl-2">
                 {/* 线条：替换 w-[2px] 为 w-0.5 */}
-                <div className="absolute left-1.5 top-2 bottom-2 w-0.5 bg-border" />
+                <div className="absolute left-1.5 top-2 bottom-2 w-0.5 bg-sys-border" />
 
                 {experience.map((exp: any, index: number) => (
                   <div key={index} className="relative pl-8">
-                    <div className="absolute left-0 top-1.5 w-4 h-4 bg-background border-2 border-green-500 rounded-full z-10" />
+                    <div className="absolute left-0 top-1.5 w-4 h-4 bg-sys-bg-page border-2 border-sys-text-success rounded-full z-10" />
                     
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
                       <h3 className="font-bold text-lg">{exp.role}</h3>
-                      <span className="text-sm text-muted-foreground font-mono bg-muted px-2 py-0.5 rounded">{exp.period}</span>
+                      <span className="text-sm text-sys-text-secondary font-mono bg-sys-bg-surface px-2 py-0.5 rounded">{exp.period}</span>
                     </div>
-                    <div className="text-green-600 dark:text-green-400 text-sm mb-2">{exp.company}</div>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
+                    <div className="text-sys-text-success text-sys-text-success text-sm mb-2">{exp.company}</div>
+                    <p className="text-sys-text-secondary text-sm leading-relaxed">
                       {exp.desc}
                     </p>
                   </div>
@@ -154,19 +154,19 @@ export default function AboutClient({ data }: { data: ProfileData }) {
             </motion.section>
 
             {/* 装备库 */}
-            <motion.section variants={itemVariants} className="bg-card/50 border border-border rounded-3xl p-8">
+            <motion.section variants={itemVariants} className="bg-sys-bg-surface/50 border border-sys-border rounded-3xl p-8">
               <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-                <Cpu className="text-orange-500" /> 工具库
+                <Cpu className="text-sys-text-warning" /> 工具库
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {toolbox.map((tool: any, idx: number) => (
-                  <div key={idx} className="flex items-center gap-4 p-4 bg-muted/50 rounded-xl border border-border hover:bg-muted transition-colors">
-                    <div className="p-3 bg-background rounded-lg border border-border shadow-sm">
+                  <div key={idx} className="flex items-center gap-4 p-4 bg-sys-bg-surface/50 rounded-xl border border-sys-border hover:bg-sys-bg-surface transition-colors">
+                    <div className="p-3 bg-sys-bg-page rounded-lg border border-sys-border shadow-sys-sm">
                       <Laptop size={20}/>
                     </div>
                     <div>
                       <div className="font-medium">{tool.name}</div>
-                      <div className="text-xs text-muted-foreground">{tool.desc}</div>
+                      <div className="text-xs text-sys-text-secondary">{tool.desc}</div>
                     </div>
                   </div>
                 ))}

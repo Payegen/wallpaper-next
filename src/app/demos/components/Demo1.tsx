@@ -36,7 +36,7 @@ export default function ScrollParallax() {
 
   return (
     <ReactLenis root> {/* 开启平滑滚动 */}
-      <div ref={containerRef} className="relative bg-black text-white selection:bg-purple-500/30">
+      <div ref={containerRef} className="relative bg-sys-bg-page text-sys-text-base selection:bg-sys-primary/30">
         
         {/* --- Section 1: Parallax Hero --- */}
         <div className="relative h-screen w-full overflow-hidden flex items-center justify-center">
@@ -54,7 +54,7 @@ export default function ScrollParallax() {
               priority
             />
             {/* 渐变遮罩，为了底部平滑过渡 */}
-            <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black" />
+            <div className="absolute inset-0 bg-linear-to-b from-sys-media-bg/80 via-sys-media-bg/80 via-70% to-sys-bg-page" />
           </motion.div>
 
           {/* 内容层 (前景) */}
@@ -62,14 +62,14 @@ export default function ScrollParallax() {
             style={{ y: heroTextY, opacity: heroOpacity }}
             className="relative z-10 text-center px-4 max-w-4xl"
           >
-            <h1 className="text-7xl md:text-9xl font-bold tracking-tighter mb-6 bg-clip-text text-transparent bg-linear-to-b from-white to-white/60">
+            <h1 className="text-7xl md:text-9xl font-bold tracking-tighter mb-6 bg-clip-text text-transparent bg-linear-to-b from-sys-media-text to-sys-media-muted">
               UNIVERSE
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-sys-media-muted mb-8 max-w-2xl mx-auto">
               探索 Web 开发的无限边界。基于 Next.js 与 Framer Motion 打造的沉浸式体验。
             </p>
             <Link href="/gallery">
-              <button className="group relative px-8 py-4 bg-white text-black rounded-full font-bold text-lg hover:bg-gray-200 transition-all flex items-center gap-2 mx-auto">
+              <button className="group relative px-8 py-4 bg-sys-primary text-sys-primary-text rounded-full font-bold text-lg hover:bg-sys-primary-hover transition-all flex items-center gap-2 mx-auto">
                 进入画廊
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
@@ -79,7 +79,7 @@ export default function ScrollParallax() {
 
         {/* --- Section 2: Content (覆盖上来) --- */}
         {/* z-index 要比 Hero 高，relative 定位，这样滚动时会自然盖住 Hero */}
-        <div className="relative z-20 bg-black">
+        <div className="relative z-20 bg-sys-bg-page">
           <div className="max-w-7xl mx-auto px-6 py-32">
             
             <motion.div 
@@ -94,13 +94,13 @@ export default function ScrollParallax() {
                   不仅是壁纸，<br/>
                   更是生产力工具。
                 </h2>
-                <p className="text-gray-400 text-lg leading-relaxed">
+                <p className="text-sys-text-secondary text-lg leading-relaxed">
                   我们将小组件（Widgets）与高清壁纸完美融合。你可以在欣赏美景的同时，处理待办事项、查看天气或进行快速搜索。
                 </p>
               </div>
-              <div className="relative aspect-square bg-linear-to-br from-purple-900/20 to-blue-900/20 rounded-3xl border border-white/10 overflow-hidden flex items-center justify-center group">
+              <div className="relative aspect-square bg-linear-to-br from-sys-primary/20 to-sys-info/20 rounded-3xl border border-sys-border overflow-hidden flex items-center justify-center group">
                  <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop')] bg-cover opacity-40 group-hover:scale-110 transition-transform duration-700" />
-                 <span className="relative z-10 text-2xl font-mono border border-white/20 bg-black/50 backdrop-blur-md px-6 py-3 rounded-xl">
+                 <span className="relative z-10 text-2xl font-mono border border-sys-media-border/20 bg-sys-media-bg/70 text-sys-media-text backdrop-blur-md px-6 py-3 rounded-xl">
                     Widget System
                  </span>
               </div>
@@ -109,8 +109,8 @@ export default function ScrollParallax() {
           </div>
 
           {/* --- Section 3: Feature Horizontal Scroll (如果想做) --- */}
-          <div className="h-[50vh] flex items-center justify-center border-t border-white/10">
-             <p className="text-gray-500">更多精彩内容开发中...</p>
+          <div className="h-[50vh] flex items-center justify-center border-t border-sys-border">
+             <p className="text-sys-text-muted">更多精彩内容开发中...</p>
           </div>
         </div>
 

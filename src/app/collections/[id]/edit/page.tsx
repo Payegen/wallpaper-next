@@ -74,7 +74,7 @@ export default function EditCollectionPage() {
   if (!isLoaded || isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-muted-foreground">加载中...</div>
+        <div className="text-sys-text-secondary">加载中...</div>
       </div>
     );
   }
@@ -90,13 +90,13 @@ export default function EditCollectionPage() {
         <div className="flex items-center gap-4 mb-8">
           <Link
             href="/collections"
-            className="p-2 hover:bg-muted rounded-lg transition-colors"
+            className="p-2 hover:bg-sys-bg-surface rounded-lg transition-colors"
           >
             <ArrowLeft size={24} />
           </Link>
           <div>
             <h1 className="text-3xl font-bold">编辑合集</h1>
-            <p className="text-muted-foreground">修改合集信息</p>
+            <p className="text-sys-text-secondary">修改合集信息</p>
           </div>
         </div>
 
@@ -118,7 +118,7 @@ export default function EditCollectionPage() {
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
               }
-              className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-4 py-3 bg-sys-bg-page border border-sys-border rounded-lg focus:outline-none focus:ring-2 focus:ring-sys-primary"
               placeholder="输入合集名称"
               required
             />
@@ -132,7 +132,7 @@ export default function EditCollectionPage() {
               onChange={(e) =>
                 setFormData({ ...formData, description: e.target.value })
               }
-              className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+              className="w-full px-4 py-3 bg-sys-bg-page border border-sys-border rounded-lg focus:outline-none focus:ring-2 focus:ring-sys-primary resize-none"
               placeholder="输入合集描述"
               rows={4}
             />
@@ -149,16 +149,16 @@ export default function EditCollectionPage() {
               onChange={(e) =>
                 setFormData({ ...formData, coverImage: e.target.value })
               }
-              className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-4 py-3 bg-sys-bg-page border border-sys-border rounded-lg focus:outline-none focus:ring-2 focus:ring-sys-primary"
               placeholder="https://example.com/cover.jpg"
             />
             {formData.coverImage && (
               <div className="mt-3">
-                <p className="text-sm text-muted-foreground mb-2">预览：</p>
+                <p className="text-sm text-sys-text-secondary mb-2">预览：</p>
                 <img
                   src={formData.coverImage}
                   alt="封面预览"
-                  className="w-full max-w-md h-48 object-cover rounded-lg border border-border"
+                  className="w-full max-w-md h-48 object-cover rounded-lg border border-sys-border"
                 />
               </div>
             )}
@@ -187,14 +187,14 @@ export default function EditCollectionPage() {
               whileTap={{ scale: 0.98 }}
               type="submit"
               disabled={isSaving}
-              className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50"
+              className="flex items-center gap-2 px-6 py-3 bg-sys-primary text-sys-primary-text rounded-lg hover:bg-sys-primary-hover transition-colors disabled:opacity-50"
             >
               <Save size={18} />
               {isSaving ? "保存中..." : "保存更改"}
             </motion.button>
             <Link
               href="/collections"
-              className="flex items-center gap-2 px-6 py-3 bg-muted text-muted-foreground rounded-lg hover:bg-muted/80 transition-colors"
+              className="flex items-center gap-2 px-6 py-3 bg-sys-bg-surface text-sys-text-secondary rounded-lg hover:bg-sys-bg-surface/80 transition-colors"
             >
               <X size={18} />
               取消

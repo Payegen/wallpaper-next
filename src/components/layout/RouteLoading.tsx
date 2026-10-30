@@ -49,14 +49,14 @@ export default function RouteLoading() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed top-0 left-0 right-0 h-1 bg-linear-to-r from-purple-500 via-pink-500 to-purple-500 z-[10000] origin-left"
+          className="fixed top-0 left-0 right-0 h-1 bg-linear-to-r from-sys-primary via-sys-accent to-sys-primary z-[10000] origin-left"
           style={{ 
             scaleX: progress / 100,
             transformOrigin: "0% 50%"
           }}
         >
           {/* 发光效果 */}
-          <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/40 to-transparent animate-pulse" />
+          <div className="absolute inset-0 bg-linear-to-r from-transparent via-sys-media-text/40 to-transparent animate-pulse" />
         </motion.div>
       )}
     </AnimatePresence>

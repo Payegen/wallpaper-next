@@ -24,25 +24,25 @@ export default async function DocsAdminPage() {
   };
 
   const categoryColors: Record<string, string> = {
-    tutorial: 'bg-blue-500/20 text-blue-300',
-    guide: 'bg-purple-500/20 text-purple-300',
-    announcement: 'bg-green-500/20 text-green-300',
-    tips: 'bg-orange-500/20 text-orange-300',
+    tutorial: 'bg-sys-info/20 text-sys-info',
+    guide: 'bg-sys-primary-subtle text-sys-primary',
+    announcement: 'bg-sys-text-success/20 text-sys-text-success',
+    tips: 'bg-sys-text-warning/20 text-sys-text-warning',
   };
 
   return (
-    <div className="min-h-screen bg-black text-white pt-24 pb-16">
+    <div className="min-h-screen bg-sys-bg-page text-sys-text-base pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-6">
         {/* 标题栏 */}
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-4xl font-bold mb-2">文章管理</h1>
-            <p className="text-gray-400">管理所有文章和教程</p>
+            <p className="text-sys-text-secondary">管理所有文章和教程</p>
           </div>
           
           <Link
             href="/docs/new"
-            className="flex items-center gap-2 px-6 py-3 rounded-lg bg-purple-600 hover:bg-purple-700 transition-colors font-medium"
+            className="flex items-center gap-2 px-6 py-3 rounded-lg bg-sys-primary text-sys-primary-text hover:bg-sys-primary-hover transition-colors font-medium"
           >
             <Plus size={20} />
             创建文章
@@ -51,57 +51,57 @@ export default async function DocsAdminPage() {
 
         {/* 统计卡片 */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <div className="p-6 rounded-xl bg-white/5 border border-white/10">
+          <div className="p-6 rounded-xl bg-sys-bg-surface border border-sys-border">
             <div className="text-3xl font-bold mb-1">{articles.length}</div>
-            <div className="text-sm text-gray-400">总文章数</div>
+            <div className="text-sm text-sys-text-secondary">总文章数</div>
           </div>
-          <div className="p-6 rounded-xl bg-white/5 border border-white/10">
+          <div className="p-6 rounded-xl bg-sys-bg-surface border border-sys-border">
             <div className="text-3xl font-bold mb-1">
               {articles.filter(a => a.published).length}
             </div>
-            <div className="text-sm text-gray-400">已发布</div>
+            <div className="text-sm text-sys-text-secondary">已发布</div>
           </div>
-          <div className="p-6 rounded-xl bg-white/5 border border-white/10">
+          <div className="p-6 rounded-xl bg-sys-bg-surface border border-sys-border">
             <div className="text-3xl font-bold mb-1">
               {articles.filter(a => !a.published).length}
             </div>
-            <div className="text-sm text-gray-400">草稿</div>
+            <div className="text-sm text-sys-text-secondary">草稿</div>
           </div>
-          <div className="p-6 rounded-xl bg-white/5 border border-white/10">
+          <div className="p-6 rounded-xl bg-sys-bg-surface border border-sys-border">
             <div className="text-3xl font-bold mb-1">
               {articles.filter(a => a.featured).length}
             </div>
-            <div className="text-sm text-gray-400">推荐文章</div>
+            <div className="text-sm text-sys-text-secondary">推荐文章</div>
           </div>
         </div>
 
         {/* 文章列表 */}
-        <div className="bg-white/5 rounded-2xl border border-white/10 overflow-hidden">
+        <div className="bg-sys-bg-surface rounded-2xl border border-sys-border overflow-hidden">
           <table className="w-full">
-            <thead className="bg-white/5 border-b border-white/10">
+            <thead className="bg-sys-bg-surface border-b border-sys-border">
               <tr>
-                <th className="text-left p-4 text-sm font-medium text-gray-400">标题</th>
-                <th className="text-left p-4 text-sm font-medium text-gray-400">分类</th>
-                <th className="text-left p-4 text-sm font-medium text-gray-400">作者</th>
-                <th className="text-left p-4 text-sm font-medium text-gray-400">状态</th>
-                <th className="text-left p-4 text-sm font-medium text-gray-400">创建时间</th>
-                <th className="text-right p-4 text-sm font-medium text-gray-400">操作</th>
+                <th className="text-left p-4 text-sm font-medium text-sys-text-secondary">标题</th>
+                <th className="text-left p-4 text-sm font-medium text-sys-text-secondary">分类</th>
+                <th className="text-left p-4 text-sm font-medium text-sys-text-secondary">作者</th>
+                <th className="text-left p-4 text-sm font-medium text-sys-text-secondary">状态</th>
+                <th className="text-left p-4 text-sm font-medium text-sys-text-secondary">创建时间</th>
+                <th className="text-right p-4 text-sm font-medium text-sys-text-secondary">操作</th>
               </tr>
             </thead>
             <tbody>
               {articles.map((article) => (
                 <tr 
                   key={article.id} 
-                  className="border-b border-white/5 hover:bg-white/5 transition-colors"
+                  className="border-b border-sys-border hover:bg-sys-bg-elevated transition-colors"
                 >
                   <td className="p-4">
                     <div className="flex items-center gap-2">
                       {article.featured && (
-                        <Star size={16} className="text-yellow-400 fill-yellow-400" />
+                        <Star size={16} className="text-sys-text-warning fill-sys-text-warning" />
                       )}
                       <div>
                         <div className="font-medium">{article.title}</div>
-                        <div className="text-xs text-gray-500">{article.slug}</div>
+                        <div className="text-xs text-sys-text-muted">{article.slug}</div>
                       </div>
                     </div>
                   </td>
@@ -110,10 +110,10 @@ export default async function DocsAdminPage() {
                       {categoryLabels[article.category]}
                     </span>
                   </td>
-                  <td className="p-4 text-sm text-gray-400">{article.author}</td>
+                  <td className="p-4 text-sm text-sys-text-secondary">{article.author}</td>
                   <td className="p-4">
                     <span className={`flex items-center gap-1 text-sm ${
-                      article.published ? 'text-green-400' : 'text-gray-500'
+                      article.published ? 'text-sys-text-success' : 'text-sys-text-muted'
                     }`}>
                       {article.published ? (
                         <>
@@ -128,7 +128,7 @@ export default async function DocsAdminPage() {
                       )}
                     </span>
                   </td>
-                  <td className="p-4 text-sm text-gray-400">
+                  <td className="p-4 text-sm text-sys-text-secondary">
                     <div className="flex items-center gap-1">
                       <Clock size={14} />
                       {new Date(article.createdAt).toLocaleDateString('zh-CN')}
@@ -138,14 +138,14 @@ export default async function DocsAdminPage() {
                     <div className="flex items-center justify-end gap-2">
                       <Link
                         href={`/docs/${article.slug}`}
-                        className="p-2 rounded hover:bg-white/10 transition-colors"
+                        className="p-2 rounded hover:bg-sys-bg-elevated transition-colors"
                         title="查看"
                       >
                         <Eye size={16} />
                       </Link>
                       <Link
                         href={`/docs/${article.slug}/edit`}
-                        className="p-2 rounded hover:bg-white/10 transition-colors"
+                        className="p-2 rounded hover:bg-sys-bg-elevated transition-colors"
                         title="编辑"
                       >
                         <Edit size={16} />
@@ -157,7 +157,7 @@ export default async function DocsAdminPage() {
                       }}>
                         <button
                           type="submit"
-                          className="p-2 rounded hover:bg-red-500/20 text-red-400 transition-colors"
+                          className="p-2 rounded hover:bg-sys-text-danger/20 text-sys-text-danger transition-colors"
                           title="删除"
                         >
                           <Trash2 size={16} />
@@ -170,7 +170,7 @@ export default async function DocsAdminPage() {
 
               {articles.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="p-12 text-center text-gray-500">
+                  <td colSpan={6} className="p-12 text-center text-sys-text-muted">
                     暂无文章，点击右上角"创建文章"开始写作
                   </td>
                 </tr>

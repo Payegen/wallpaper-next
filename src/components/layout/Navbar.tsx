@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/ui/ModeToggle";
 import { Show, SignInButton, UserButton } from "@clerk/nextjs";
 import { useAdmin } from "@/hooks/useAuth";
+import { HomeHeader } from "@/components/home/HomeHeader";
 
 const navItems = [
   { name: "首页", path: "/", icon: Home },
@@ -43,6 +44,8 @@ export function Navbar() {
   //   };
   // }, [isHovered]);
 
+  if (pathname === "/") return <HomeHeader isAdmin={isAdmin} />;
+
   return (
     // 1. 触发容器：固定在顶部，高度较小，负责捕获鼠标
     <div 
@@ -54,9 +57,9 @@ export function Navbar() {
         layout
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
         className={cn(
-          "relative flex items-center justify-center rounded-full border border-border/50 bg-background/60 backdrop-blur-xl shadow-lg shadow-black/5 dark:shadow-white/5 overflow-hidden",
+          "relative flex items-center justify-center rounded-full border border-sys-border/50 bg-sys-bg-page/60 backdrop-blur-xl shadow-sys-lg overflow-hidden",
           // 这里的样式控制默认状态和展开状态的 宽/高/内边距
-          isHovered ? "px-3 py-2 gap-2" : "w-32 h-2 py-0 px-0 opacity-50 hover:opacity-100 bg-foreground/20 border-transparent cursor-pointer"
+          isHovered ? "px-3 py-2 gap-2" : "w-32 h-2 py-0 px-0 opacity-50 hover:opacity-100 bg-sys-text-base/20 border-transparent cursor-pointer"
         )}
       >
         
@@ -72,7 +75,7 @@ export function Navbar() {
               onClick={() => setIsHovered(true)}
             >
                {/* 一个简单的横条，类似 iOS 底部条 */}
-               <div className="w-12 h-1 bg-foreground/50 rounded-full" />
+               <div className="w-12 h-1 bg-sys-text-base/50 rounded-full" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -99,7 +102,7 @@ export function Navbar() {
                       href={item.path}
                       className={cn(
                         "relative px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 whitespace-nowrap",
-                        isActive ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+                        isActive ? "text-sys-primary-text" : "text-sys-text-secondary hover:text-sys-text-base"
                       )}
                       onMouseEnter={() => setHoveredPath(item.path)}
                       onMouseLeave={() => setHoveredPath(null)}
@@ -108,7 +111,7 @@ export function Navbar() {
                       {isActive && (
                         <motion.div
                           layoutId="navbar-active"
-                          className="absolute inset-0 bg-primary rounded-full -z-10"
+                          className="absolute inset-0 bg-sys-primary text-sys-primary-text rounded-full -z-10"
                           transition={{ type: "spring", stiffness: 380, damping: 30 }}
                         />
                       )}
@@ -117,7 +120,7 @@ export function Navbar() {
                       {hoveredPath === item.path && !isActive && (
                         <motion.div
                           layoutId="navbar-hover"
-                          className="absolute inset-0 bg-muted rounded-full -z-10"
+                          className="absolute inset-0 bg-sys-bg-surface rounded-full -z-10"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
@@ -131,18 +134,18 @@ export function Navbar() {
                 })}
               </nav>
           {isAdmin && (
-            <Link href="/uploadpage" className="text-primary font-bold">
+            <Link href="/uploadpage" className="text-sys-primary font-bold">
               发布壁纸
             </Link>
           )}
               {/* 分割线 */}
-              <div className="w-px h-6 bg-border mx-1" />
+              <div className="w-px h-6 bg-sys-border mx-1" />
 
              
               {/* 未登录时：显示纯净的文本登录按钮 */}
               <Show when="signed-out">
                 <SignInButton mode="modal">
-                  <button className="text-sm font-medium px-4 py-2 hover:bg-muted rounded-full transition-colors">
+                  <button className="text-sm font-medium px-4 py-2 hover:bg-sys-bg-surface rounded-full transition-colors">
                     登录
                   </button>
                 </SignInButton>
@@ -154,7 +157,7 @@ export function Navbar() {
               </Show>
 
               {/* 分割线 */}
-              <div className="w-px h-6 bg-border mx-1" />
+              <div className="w-px h-6 bg-sys-border mx-1" />
               {/* 主题切换 */}
               <ModeToggle />
 
@@ -163,7 +166,7 @@ export function Navbar() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsHovered(false)}
-                className="p-2 hover:bg-muted rounded-full transition-colors text-muted-foreground hover:text-foreground"
+                className="p-2 hover:bg-sys-bg-surface rounded-full transition-colors text-sys-text-secondary hover:text-sys-text-base"
                 title="收起菜单"
               >
                 <ChevronUp size={16} />

@@ -8,9 +8,9 @@
  *
  * 映射规则（Tailwind v4）：
  *   --color-*        → bg-* / text-* / border-* / fill-* / stroke-*
- *   --font-size-*    → text-*（字号）
+ *   --text-*         → text-*（字号）
  *   --font-weight-*  → font-*（字重）
- *   --line-height-*  → leading-*（行高）
+ *   --leading-*      → leading-*（行高）
  *   --radius-*       → rounded-*（圆角）
  *   --shadow-*       → shadow-*（阴影）
  *
@@ -26,36 +26,37 @@
  * =====================================================
  */
 
-@theme {
+@theme inline {
+  --color-*: initial;
 
   /* ════════════════════════════════════════════════
-     ① 兼容层 — 原有 shadcn/ui 颜色类名
+     ① 兼容层 — 旧类名统一指向 sys 主题变量
         保持已有代码中 bg-background、text-foreground 等不变
   ════════════════════════════════════════════════ */
-  --color-border:                  hsl(var(--border));
-  --color-input:                   hsl(var(--input));
-  --color-ring:                    hsl(var(--ring));
-  --color-background:              hsl(var(--background));
-  --color-foreground:              hsl(var(--foreground));
-  --color-primary:                 hsl(var(--primary));
-  --color-primary-foreground:      hsl(var(--primary-foreground));
-  --color-secondary:               hsl(var(--secondary));
-  --color-secondary-foreground:    hsl(var(--secondary-foreground));
-  --color-muted:                   hsl(var(--muted));
-  --color-muted-foreground:        hsl(var(--muted-foreground));
-  --color-accent:                  hsl(var(--accent));
-  --color-accent-foreground:       hsl(var(--accent-foreground));
-  --color-destructive:             hsl(var(--destructive));
-  --color-destructive-foreground:  hsl(var(--destructive-foreground));
-  --color-card:                    hsl(var(--card));
-  --color-card-foreground:         hsl(var(--card-foreground));
-  --color-popover:                 hsl(var(--popover));
-  --color-popover-foreground:      hsl(var(--popover-foreground));
+  --color-border:                  rgb(var(--sys-border));
+  --color-input:                   rgb(var(--sys-border));
+  --color-ring:                    rgb(var(--sys-primary));
+  --color-background:              rgb(var(--sys-bg-page));
+  --color-foreground:              rgb(var(--sys-text-base));
+  --color-primary:                 rgb(var(--sys-primary));
+  --color-primary-foreground:      rgb(var(--sys-primary-text));
+  --color-secondary:               rgb(var(--sys-bg-elevated));
+  --color-secondary-foreground:    rgb(var(--sys-text-base));
+  --color-muted:                   rgb(var(--sys-bg-surface));
+  --color-muted-foreground:        rgb(var(--sys-text-secondary));
+  --color-accent:                  rgb(var(--sys-primary-subtle));
+  --color-accent-foreground:       rgb(var(--sys-text-base));
+  --color-destructive:             rgb(var(--sys-text-danger));
+  --color-destructive-foreground:  rgb(var(--sys-primary-text));
+  --color-card:                    rgb(var(--sys-bg-surface));
+  --color-card-foreground:         rgb(var(--sys-text-base));
+  --color-popover:                 rgb(var(--sys-bg-elevated));
+  --color-popover-foreground:      rgb(var(--sys-text-base));
 
   /* 兼容层圆角 */
-  --radius-lg:   var(--radius);
-  --radius-md:   calc(var(--radius) - 2px);
-  --radius-sm:   calc(var(--radius) - 4px);
+  --radius-lg:   var(--sys-radius-md);
+  --radius-md:   calc(var(--sys-radius-md) - 2px);
+  --radius-sm:   var(--sys-radius-sm);
 
   /* ════════════════════════════════════════════════
      ② 语义化背景色
@@ -90,6 +91,20 @@
   --color-sys-primary-subtle:      rgb(var(--sys-primary-subtle));
   --color-sys-primary-text:        rgb(var(--sys-primary-text));
 
+  /* 辅助强调、状态与媒体颜色 */
+  --color-sys-accent:             rgb(var(--sys-accent));
+  --color-sys-accent-hover:       rgb(var(--sys-accent-hover));
+  --color-sys-accent-text:        rgb(var(--sys-accent-text));
+  --color-sys-info:               rgb(var(--sys-info));
+  --color-sys-media-bg:           rgb(var(--sys-media-bg));
+  --color-sys-media-text:         rgb(var(--sys-media-text));
+  --color-sys-media-muted:        rgb(var(--sys-media-muted));
+  --color-sys-media-border:       rgb(var(--sys-media-border));
+  --color-sys-control-thumb:      rgb(var(--sys-control-thumb));
+
+  --font-sans: var(--font-geist-sans), sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+
   /* ════════════════════════════════════════════════
      ⑤ 边框 & 分割线
         border-sys-border / border-sys-border-strong / ...
@@ -102,14 +117,14 @@
      ⑥ 字体尺寸
         text-sys-xs / text-sys-sm / text-sys-base / ...
   ════════════════════════════════════════════════ */
-  --font-size-sys-xs:              var(--sys-font-xs);    /* 12px */
-  --font-size-sys-sm:              var(--sys-font-sm);    /* 14px */
-  --font-size-sys-base:            var(--sys-font-base);  /* 16px */
-  --font-size-sys-lg:              var(--sys-font-lg);    /* 18px */
-  --font-size-sys-xl:              var(--sys-font-xl);    /* 20px */
-  --font-size-sys-2xl:             var(--sys-font-2xl);   /* 24px */
-  --font-size-sys-3xl:             var(--sys-font-3xl);   /* 30px */
-  --font-size-sys-4xl:             var(--sys-font-4xl);   /* 36px */
+  --text-sys-xs:              var(--sys-font-xs);    /* 12px */
+  --text-sys-sm:              var(--sys-font-sm);    /* 14px */
+  --text-sys-base:            var(--sys-font-base);  /* 16px */
+  --text-sys-lg:              var(--sys-font-lg);    /* 18px */
+  --text-sys-xl:              var(--sys-font-xl);    /* 20px */
+  --text-sys-2xl:             var(--sys-font-2xl);   /* 24px */
+  --text-sys-3xl:             var(--sys-font-3xl);   /* 30px */
+  --text-sys-4xl:             var(--sys-font-4xl);   /* 36px */
 
   /* ════════════════════════════════════════════════
      ⑦ 字重
@@ -124,9 +139,9 @@
      ⑧ 行高
         leading-sys-tight / leading-sys-base / leading-sys-loose
   ════════════════════════════════════════════════ */
-  --line-height-sys-tight:         var(--sys-leading-tight);  /* 1.25 */
-  --line-height-sys-base:          var(--sys-leading-base);   /* 1.50 */
-  --line-height-sys-loose:         var(--sys-leading-loose);  /* 1.75 */
+  --leading-sys-tight:         var(--sys-leading-tight);  /* 1.25 */
+  --leading-sys-base:          var(--sys-leading-base);   /* 1.50 */
+  --leading-sys-loose:         var(--sys-leading-loose);  /* 1.75 */
 
   /* ════════════════════════════════════════════════
      ⑨ 圆角
@@ -146,6 +161,10 @@
   --shadow-sys-md:                 var(--sys-shadow-md);
   --shadow-sys-lg:                 var(--sys-shadow-lg);
   --shadow-sys-xl:                 var(--sys-shadow-xl);
+  --shadow-sys-2xl:                var(--sys-shadow-2xl);
+  --drop-shadow-sys-md:            var(--sys-drop-shadow-md);
+  --drop-shadow-sys-lg:            var(--sys-drop-shadow-lg);
+  --drop-shadow-sys-xl:            var(--sys-drop-shadow-xl);
 
   /* ════════════════════════════════════════════════
      ⑪ 动画（保持原有）

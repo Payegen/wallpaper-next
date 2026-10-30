@@ -13,10 +13,10 @@ const categoryLabels: Record<ArticleCategory, string> = {
 };
 
 const categoryColors: Record<ArticleCategory, string> = {
-  tutorial: 'bg-blue-500/20 text-blue-300',
-  guide: 'bg-purple-500/20 text-purple-300',
-  announcement: 'bg-green-500/20 text-green-300',
-  tips: 'bg-orange-500/20 text-orange-300',
+  tutorial: 'bg-sys-info/20 text-sys-info',
+  guide: 'bg-sys-primary-subtle text-sys-primary',
+  announcement: 'bg-sys-text-success/20 text-sys-text-success',
+  tips: 'bg-sys-text-warning/20 text-sys-text-warning',
 };
 
 export default async function DocsPage() {
@@ -28,14 +28,14 @@ export default async function DocsPage() {
   const featuredArticles = allArticles.filter(a => a.featured && a.published);
 
   return (
-    <div className="min-h-screen bg-black text-white pt-24 pb-16">
+    <div className="min-h-screen bg-sys-bg-page text-sys-text-base pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-6">
         {/* 页面标题 */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-r from-white via-white to-white/50">
+          <h1 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-r from-sys-text-base via-sys-text-base to-sys-text-secondary">
             文档中心
           </h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-6">
+          <p className="text-sys-text-secondary text-lg max-w-2xl mx-auto mb-6">
             探索 Wallpaper Next 的使用教程、开发指南和最新动态
           </p>
           
@@ -47,7 +47,7 @@ export default async function DocsPage() {
         {featuredArticles.length > 0 && (
           <section className="mb-16">
             <div className="flex items-center gap-2 mb-6">
-              <Sparkles className="w-5 h-5 text-yellow-400" />
+              <Sparkles className="w-5 h-5 text-sys-text-warning" />
               <h2 className="text-2xl font-semibold">推荐阅读</h2>
             </div>
             
@@ -56,7 +56,7 @@ export default async function DocsPage() {
                 <Link
                   key={article.id}
                   href={`/docs/${article.slug}`}
-                  className="group relative rounded-xl overflow-hidden bg-linear-to-br from-white/5 to-white/10 border border-white/10 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-1"
+                  className="group relative rounded-xl overflow-hidden bg-linear-to-br from-sys-bg-surface to-sys-bg-elevated border border-sys-border hover:border-sys-primary/50 transition-all duration-300 hover:-translate-y-1"
                 >
                   {/* 封面图 */}
                   {article.coverImage && (
@@ -68,7 +68,7 @@ export default async function DocsPage() {
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                         unoptimized
                       />
-                      <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent" />
+                      <div className="absolute inset-0 bg-linear-to-t from-sys-media-bg/70 to-transparent" />
                     </div>
                   )}
                   
@@ -78,16 +78,16 @@ export default async function DocsPage() {
                       {categoryLabels[article.category]}
                     </span>
                     
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-purple-300 transition-colors">
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-sys-primary transition-colors">
                       {article.title}
                     </h3>
                     
-                    <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+                    <p className="text-sys-text-secondary text-sm mb-4 line-clamp-2">
                       {article.description}
                     </p>
                     
                     {/* 元信息 */}
-                    <div className="flex items-center gap-4 text-xs text-gray-500">
+                    <div className="flex items-center gap-4 text-xs text-sys-text-muted">
                       <div className="flex items-center gap-1">
                         <Clock size={14} />
                         <span>{article.readTime} 分钟阅读</span>
@@ -107,7 +107,7 @@ export default async function DocsPage() {
         <section>
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
-              <BookOpen className="w-5 h-5 text-blue-400" />
+              <BookOpen className="w-5 h-5 text-sys-info" />
               <h2 className="text-2xl font-semibold">所有文章</h2>
             </div>
             
@@ -116,7 +116,7 @@ export default async function DocsPage() {
               {(['tutorial', 'guide', 'tips', 'announcement'] as ArticleCategory[]).map((cat) => (
                 <button
                   key={cat}
-                  className="px-3 py-1.5 rounded-full text-sm bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
+                  className="px-3 py-1.5 rounded-full text-sm bg-sys-bg-surface hover:bg-sys-bg-elevated border border-sys-border transition-colors"
                 >
                   {categoryLabels[cat]}
                 </button>
@@ -129,7 +129,7 @@ export default async function DocsPage() {
               <Link
                 key={article.id}
                 href={`/docs/${article.slug}`}
-                className="group block p-6 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-500/30 transition-all duration-300"
+                className="group block p-6 rounded-xl bg-sys-bg-surface hover:bg-sys-bg-elevated border border-sys-border hover:border-sys-primary/30 transition-all duration-300"
               >
                 <div className="flex gap-6">
                   {/* 封面缩略图 */}
@@ -151,23 +151,23 @@ export default async function DocsPage() {
                         {categoryLabels[article.category]}
                       </span>
                       {article.featured && (
-                        <span className="text-xs text-yellow-400 flex items-center gap-1">
+                        <span className="text-xs text-sys-text-warning flex items-center gap-1">
                           <Sparkles size={12} />
                           推荐
                         </span>
                       )}
                     </div>
                     
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-purple-300 transition-colors">
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-sys-primary transition-colors">
                       {article.title}
                     </h3>
                     
-                    <p className="text-gray-400 text-sm mb-3">
+                    <p className="text-sys-text-secondary text-sm mb-3">
                       {article.description}
                     </p>
                     
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4 text-xs text-gray-500">
+                      <div className="flex items-center gap-4 text-xs text-sys-text-muted">
                         <span>{article.author}</span>
                         <div className="flex items-center gap-1">
                           <Clock size={12} />
@@ -178,10 +178,10 @@ export default async function DocsPage() {
                       
                       {/* 标签 */}
                       <div className="flex items-center gap-2">
-                        <Tag size={12} className="text-gray-500" />
+                        <Tag size={12} className="text-sys-text-muted" />
                         <div className="flex gap-2">
                           {article.tags.slice(0, 3).map((tag) => (
-                            <span key={tag} className="text-xs text-gray-500">
+                            <span key={tag} className="text-xs text-sys-text-muted">
                               #{tag}
                             </span>
                           ))}

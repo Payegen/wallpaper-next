@@ -11,12 +11,12 @@ interface MarkdownRendererProps {
 function ImageModal({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-sys-media-bg/90 text-sys-media-text backdrop-blur-sm"
       onClick={onClose}
     >
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors z-10"
+        className="absolute top-4 right-4 p-2 rounded-full bg-sys-media-text/10 hover:bg-sys-media-text/20 transition-colors z-10"
       >
         <X size={24} />
       </button>
@@ -37,7 +37,7 @@ function MarkdownImage({ src, alt }: { src: string; alt: string }) {
   return (
     <>
       <figure className="my-6 group relative">
-        <div className="relative overflow-hidden rounded-lg border border-white/10">
+        <div className="relative overflow-hidden rounded-lg border border-sys-border">
           <img
             src={src}
             alt={alt}
@@ -47,17 +47,17 @@ function MarkdownImage({ src, alt }: { src: string; alt: string }) {
           />
           {/* 悬停遮罩 */}
           <div 
-            className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center cursor-pointer"
+            className="absolute inset-0 bg-sys-media-bg/0 group-hover:bg-sys-media-bg/40 transition-colors flex items-center justify-center cursor-pointer"
             onClick={() => setShowModal(true)}
           >
             <ZoomIn 
               size={32} 
-              className="text-white opacity-0 group-hover:opacity-100 transition-opacity"
+              className="text-sys-media-text opacity-0 group-hover:opacity-100 transition-opacity"
             />
           </div>
         </div>
         {alt && (
-          <figcaption className="text-center text-sm text-gray-500 mt-2">
+          <figcaption className="text-center text-sm text-sys-text-muted mt-2">
             {alt}
           </figcaption>
         )}
@@ -89,24 +89,24 @@ function CodeBlock({ code, language }: { code: string; language: string }) {
     <div className="relative group my-4">
       <div className="absolute top-2 right-2 flex items-center gap-2 z-10">
         {language && (
-          <span className="text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded">
+          <span className="text-xs text-sys-text-muted bg-sys-bg-elevated px-2 py-1 rounded">
             {language}
           </span>
         )}
         <button
           onClick={handleCopy}
-          className="p-1.5 rounded bg-gray-800 hover:bg-gray-700 transition-colors"
+          className="p-1.5 rounded bg-sys-bg-elevated hover:bg-sys-bg-elevated transition-colors"
           title="复制代码"
         >
           {copied ? (
-            <Check size={14} className="text-green-400" />
+            <Check size={14} className="text-sys-text-success" />
           ) : (
-            <Copy size={14} className="text-gray-400" />
+            <Copy size={14} className="text-sys-text-secondary" />
           )}
         </button>
       </div>
-      <pre className="bg-gray-900/80 border border-white/10 rounded-lg p-4 pt-10 overflow-x-auto">
-        <code className="text-sm font-mono text-gray-300">{code}</code>
+      <pre className="bg-sys-bg-surface/80 border border-sys-border rounded-lg p-4 pt-10 overflow-x-auto">
+        <code className="text-sm font-mono text-sys-text-secondary">{code}</code>
       </pre>
     </div>
   );
@@ -115,7 +115,7 @@ function CodeBlock({ code, language }: { code: string; language: string }) {
 // 内联代码
 function InlineCode({ children }: { children: React.ReactNode }) {
   return (
-    <code className="bg-gray-800/50 border border-white/10 text-purple-300 px-1.5 py-0.5 rounded text-sm font-mono">
+    <code className="bg-sys-primary-subtle border border-sys-border text-sys-primary px-1.5 py-0.5 rounded text-sm font-mono">
       {children}
     </code>
   );
@@ -124,8 +124,8 @@ function InlineCode({ children }: { children: React.ReactNode }) {
 // 引用块
 function BlockQuote({ children }: { children: React.ReactNode }) {
   return (
-    <blockquote className="border-l-4 border-purple-500 pl-4 my-4 bg-purple-500/5 py-2 rounded-r">
-      <div className="text-gray-300 italic">{children}</div>
+    <blockquote className="border-l-4 border-sys-primary pl-4 my-4 bg-sys-primary/5 py-2 rounded-r">
+      <div className="text-sys-text-secondary italic">{children}</div>
     </blockquote>
   );
 }
@@ -134,7 +134,7 @@ function BlockQuote({ children }: { children: React.ReactNode }) {
 function Table({ children }: { children: React.ReactNode }) {
   return (
     <div className="overflow-x-auto my-4">
-      <table className="min-w-full border-collapse border border-white/10">
+      <table className="min-w-full border-collapse border border-sys-border">
         {children}
       </table>
     </div>
@@ -142,7 +142,7 @@ function Table({ children }: { children: React.ReactNode }) {
 }
 
 function TableHead({ children }: { children: React.ReactNode }) {
-  return <thead className="bg-white/5">{children}</thead>;
+  return <thead className="bg-sys-bg-surface">{children}</thead>;
 }
 
 function TableBody({ children }: { children: React.ReactNode }) {
@@ -150,13 +150,13 @@ function TableBody({ children }: { children: React.ReactNode }) {
 }
 
 function TableRow({ children }: { children: React.ReactNode }) {
-  return <tr className="border-b border-white/10">{children}</tr>;
+  return <tr className="border-b border-sys-border">{children}</tr>;
 }
 
 function TableCell({ children, isHeader }: { children: React.ReactNode; isHeader?: boolean }) {
   const Tag = isHeader ? 'th' : 'td';
   return (
-    <Tag className={`px-4 py-2 text-left ${isHeader ? 'font-semibold text-white' : 'text-gray-300'}`}>
+    <Tag className={`px-4 py-2 text-left ${isHeader ? 'font-semibold text-sys-text-base' : 'text-sys-text-secondary'}`}>
       {children}
     </Tag>
   );
@@ -199,7 +199,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
       // 标题
       if (line.startsWith('# ')) {
         elements.push(
-          <h1 key={i} className="text-4xl font-bold mt-8 mb-4 text-white">
+          <h1 key={i} className="text-4xl font-bold mt-8 mb-4 text-sys-text-base">
             {parseInline(line.slice(2))}
           </h1>
         );
@@ -209,7 +209,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
 
       if (line.startsWith('## ')) {
         elements.push(
-          <h2 key={i} className="text-2xl font-semibold mt-6 mb-3 text-white">
+          <h2 key={i} className="text-2xl font-semibold mt-6 mb-3 text-sys-text-base">
             {parseInline(line.slice(3))}
           </h2>
         );
@@ -219,7 +219,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
 
       if (line.startsWith('### ')) {
         elements.push(
-          <h3 key={i} className="text-xl font-medium mt-4 mb-2 text-white">
+          <h3 key={i} className="text-xl font-medium mt-4 mb-2 text-sys-text-base">
             {parseInline(line.slice(4))}
           </h3>
         );
@@ -229,7 +229,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
 
       if (line.startsWith('#### ')) {
         elements.push(
-          <h4 key={i} className="text-lg font-medium mt-3 mb-2 text-white">
+          <h4 key={i} className="text-lg font-medium mt-3 mb-2 text-sys-text-base">
             {parseInline(line.slice(5))}
           </h4>
         );
@@ -250,7 +250,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
 
       // 分割线
       if (line.trim() === '---' || line.trim() === '***' || line.trim() === '___') {
-        elements.push(<hr key={i} className="my-8 border-white/10" />);
+        elements.push(<hr key={i} className="my-8 border-sys-border" />);
         i++;
         continue;
       }
@@ -261,7 +261,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
         
         while (i < lines.length && (lines[i].startsWith('- ') || lines[i].startsWith('* '))) {
           listItems.push(
-            <li key={i} className="ml-6 text-gray-300 list-disc mb-1">
+            <li key={i} className="ml-6 text-sys-text-secondary list-disc mb-1">
               {parseInline(lines[i].slice(2))}
             </li>
           );
@@ -279,7 +279,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
         while (i < lines.length && /^\d+\.\s/.test(lines[i])) {
           const content = lines[i].replace(/^\d+\.\s/, '');
           listItems.push(
-            <li key={i} className="ml-6 text-gray-300 list-decimal mb-1">
+            <li key={i} className="ml-6 text-sys-text-secondary list-decimal mb-1">
               {parseInline(content)}
             </li>
           );
@@ -345,7 +345,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
 
       // 普通段落
       elements.push(
-        <p key={i} className="text-gray-300 leading-relaxed mb-4">
+        <p key={i} className="text-sys-text-secondary leading-relaxed mb-4">
           {parseInline(line)}
         </p>
       );
@@ -385,7 +385,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
             href={linkMatch[2]}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-400 hover:text-blue-300 underline"
+            className="text-sys-text-link hover:text-sys-primary-hover underline"
           >
             {linkMatch[1]}
           </a>
@@ -414,7 +414,7 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
       return (
         <>
           {parts[0] && parseInline(parts[0])}
-          <strong className="font-semibold text-white">{boldMatch[1]}</strong>
+          <strong className="font-semibold text-sys-text-base">{boldMatch[1]}</strong>
           {parts[1] && parseInline(parts[1])}
         </>
       );

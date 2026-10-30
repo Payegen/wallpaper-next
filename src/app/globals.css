@@ -5,25 +5,36 @@
    
    引入顺序：
      1. Tailwind v4 核心
-     2. 自定义变体声明（dark: 前缀）
-     3. 普通模式 CSS 变量  → src/styles/themes/light.css
-     4. 暗色模式 CSS 变量  → src/styles/themes/dark.css
+     2. Atropos 基础布局与指针交互
+     3. 自定义变体声明（dark: 前缀）
+     4. 亮暗主题变量 → src/styles/themes/light.css、dark.css
      5. Tailwind @theme 映射（语义化类名）
-     6. 基础样式（兼容 shadcn/ui HSL 变量 + body 样式）
+     6. 基础样式（主题背景、文字、字体、表单与焦点状态）
+     7. 首页场景与 Atropos 主题覆盖
+     8. 全屏扇形主题切换
 ═══════════════════════════════════════════════════════════════════════════ */
 
 /* 1. Tailwind v4 核心 */
 @import "tailwindcss";
 
-/* 2. 自定义变体（dark: 前缀匹配规则） */
+/* 2. Atropos 的布局与指针交互样式 */
+@import "atropos/css";
+
+/* 3. 自定义变体（dark: 前缀匹配规则） */
 @import "../styles/variants.css";
 
-/* 3 & 4. 主题变量（CSS 原始变量，亮色 / 暗色） */
+/* 4. 主题变量（CSS 原始变量，亮色 / 暗色） */
 @import "../styles/themes/light.css" layer(base);
 @import "../styles/themes/dark.css"  layer(base);
 
 /* 5. Tailwind @theme 映射（语义化类名 sys-*） */
 @import "../styles/tailwind-theme.css";
 
-/* 6. 基础样式（shadcn/ui 兼容变量 + body 重置） */
+/* 6. 全局初始化，统一引用 themes/ 中的变量 */
 @import "../styles/base.css";
+
+/* 7. 首页场景与 Atropos 主题覆盖 */
+@import "../styles/home.css";
+
+/* 8. 全屏扇形主题切换 */
+@import "../styles/theme-transition.css";

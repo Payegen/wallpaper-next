@@ -15,22 +15,22 @@ const ClockWidget = () => {
     return () => clearInterval(t);
   }, []);
   // 避免未加载时显示空
-  if (!time) return <div className="text-white/50">Loading...</div>;
+  if (!time) return <div className="text-sys-media-muted">Loading...</div>;
   return (
     <div className="text-center">
-        <div className="text-7xl font-bold text-white drop-shadow-xl font-mono tracking-tighter">{time}</div>
-        <div className="text-white/80 font-medium">{new Date().toLocaleDateString()}</div>
+        <div className="text-7xl font-bold text-sys-media-text drop-shadow-sys-xl font-mono tracking-tighter">{time}</div>
+        <div className="text-sys-media-muted font-medium">{new Date().toLocaleDateString()}</div>
     </div>
   );
 };
 
 const SearchWidget = () => (
-  <div className="bg-black/30 backdrop-blur-xl border border-white/20 rounded-full px-5 py-3 flex items-center gap-3 w-[320px] shadow-2xl group cursor-text">
-    <Search size={20} className="text-white/60" />
+  <div className="bg-sys-bg-surface/95 text-sys-text-base backdrop-blur-xl border border-sys-border rounded-full px-5 py-3 flex items-center gap-3 w-[320px] shadow-sys-2xl group cursor-text">
+    <Search size={20} className="text-sys-text-secondary" />
     <input 
       type="text" 
       placeholder="Search..." 
-      className="bg-transparent border-none outline-none text-white w-full placeholder:text-white/40 font-medium"
+      className="bg-transparent border-none outline-none text-sys-text-base w-full placeholder:text-sys-text-muted font-medium"
       // 核心：防止输入框获取焦点时触发拖拽
       onPointerDown={(e) => e.stopPropagation()} 
     />
@@ -38,22 +38,22 @@ const SearchWidget = () => (
 );
 
 const WeatherWidget = () => (
-  <div className="bg-gradient-to-br from-blue-500/30 to-purple-500/30 backdrop-blur-xl border border-white/20 rounded-2xl p-5 w-[160px] text-white flex flex-col items-center gap-2 shadow-2xl">
-    <CloudSun size={48} className="text-yellow-300 drop-shadow-md" />
+  <div className="bg-linear-to-br from-sys-bg-surface/95 to-sys-bg-elevated/95 backdrop-blur-xl border border-sys-border rounded-2xl p-5 w-[160px] text-sys-text-base flex flex-col items-center gap-2 shadow-sys-2xl">
+    <CloudSun size={48} className="text-sys-text-warning drop-shadow-sys-md" />
     <div className="text-3xl font-bold mt-1">24°</div>
-    <div className="text-sm text-white/80 font-medium">Shanghai</div>
+    <div className="text-sm text-sys-text-secondary font-medium">Shanghai</div>
   </div>
 );
 
 const TodoWidget = () => (
-  <div className="bg-gray-900/60 backdrop-blur-xl border border-white/20 rounded-2xl p-5 w-[220px] text-white shadow-2xl">
-    <h3 className="font-semibold mb-3 text-sm border-b border-white/10 pb-2 flex justify-between">
-      Tasks <span className="text-xs bg-white/20 px-1.5 rounded text-white/80">3</span>
+  <div className="bg-sys-bg-surface/95 backdrop-blur-xl border border-sys-border rounded-2xl p-5 w-[220px] text-sys-text-base shadow-sys-2xl">
+    <h3 className="font-semibold mb-3 text-sm border-b border-sys-border pb-2 flex justify-between">
+      Tasks <span className="text-xs bg-sys-bg-elevated px-1.5 rounded text-sys-text-secondary">3</span>
     </h3>
     <ul className="space-y-2.5 text-sm">
-      <li className="flex gap-2.5 items-center text-white/90"><CheckCircle2 size={16} className="text-green-400 shrink-0"/> Design System</li>
-      <li className="flex gap-2.5 items-center text-white/50 line-through decoration-white/30"><div className="w-4 h-4 border border-white/20 rounded-full flex items-center justify-center shrink-0"><div className="w-2 h-2 bg-white/40 rounded-full"/></div> Update API</li>
-      <li className="flex gap-2.5 items-center text-white/90"><div className="w-4 h-4 border border-white/40 rounded-full shrink-0"/> Drink Water</li>
+      <li className="flex gap-2.5 items-center text-sys-text-base"><CheckCircle2 size={16} className="text-sys-text-success shrink-0"/> Design System</li>
+      <li className="flex gap-2.5 items-center text-sys-text-muted line-through decoration-sys-text-muted/30"><div className="w-4 h-4 border border-sys-border rounded-full flex items-center justify-center shrink-0"><div className="w-2 h-2 bg-sys-text-base/40 rounded-full"/></div> Update API</li>
+      <li className="flex gap-2.5 items-center text-sys-text-base"><div className="w-4 h-4 border border-sys-border-strong rounded-full shrink-0"/> Drink Water</li>
     </ul>
   </div>
 );
@@ -111,7 +111,7 @@ export default function WidgetLayer() {
                 e.stopPropagation(); // 防止触发拖拽
                 removeWidget(widget.id);
               }}
-              className="absolute z-11 -top-3 -right-3 bg-red-500/80 hover:bg-red-500 text-white rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all shadow-lg backdrop-blur-sm scale-75 group-hover:scale-100"
+              className="absolute z-11 -top-3 -right-3 bg-sys-text-danger/80 hover:bg-sys-text-danger hover:text-sys-primary-text rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all shadow-sys-lg backdrop-blur-sm scale-75 group-hover:scale-100"
             >
               <X size={14} />
             </button>

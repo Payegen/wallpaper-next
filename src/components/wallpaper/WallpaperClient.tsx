@@ -74,20 +74,20 @@ export default function WallpaperClient({ data }: Props) {
     <motion.div 
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      className="absolute top-20 right-8 bg-black/80 backdrop-blur-xl border border-white/10 p-2 rounded-xl flex flex-col gap-2 min-w-37.5"
+      className="absolute top-20 right-8 bg-sys-bg-elevated/95 text-sys-text-base backdrop-blur-xl border border-sys-border p-2 rounded-xl flex flex-col gap-2 min-w-37.5"
     >
-      <div className="text-xs text-gray-400 px-2 py-1 uppercase tracking-wider">添加组件</div>
-      <button onClick={() => addWidget('clock')} className="flex items-center gap-2 px-3 py-2 hover:bg-white/10 rounded-lg text-sm text-left"><LayoutGrid size={16}/> 时钟</button>
-      <button onClick={() => addWidget('weather')} className="flex items-center gap-2 px-3 py-2 hover:bg-white/10 rounded-lg text-sm text-left"><LayoutGrid size={16}/> 天气</button>
-      <button onClick={() => addWidget('search')} className="flex items-center gap-2 px-3 py-2 hover:bg-white/10 rounded-lg text-sm text-left"><LayoutGrid size={16}/> 搜索栏</button>
-      <button onClick={() => addWidget('todo')} className="flex items-center gap-2 px-3 py-2 hover:bg-white/10 rounded-lg text-sm text-left"><LayoutGrid size={16}/> 待办清单</button>
+      <div className="text-xs text-sys-text-secondary px-2 py-1 uppercase tracking-wider">添加组件</div>
+      <button onClick={() => addWidget('clock')} className="flex items-center gap-2 px-3 py-2 hover:bg-sys-bg-elevated rounded-lg text-sm text-left"><LayoutGrid size={16}/> 时钟</button>
+      <button onClick={() => addWidget('weather')} className="flex items-center gap-2 px-3 py-2 hover:bg-sys-bg-elevated rounded-lg text-sm text-left"><LayoutGrid size={16}/> 天气</button>
+      <button onClick={() => addWidget('search')} className="flex items-center gap-2 px-3 py-2 hover:bg-sys-bg-elevated rounded-lg text-sm text-left"><LayoutGrid size={16}/> 搜索栏</button>
+      <button onClick={() => addWidget('todo')} className="flex items-center gap-2 px-3 py-2 hover:bg-sys-bg-elevated rounded-lg text-sm text-left"><LayoutGrid size={16}/> 待办清单</button>
     </motion.div>
   ), [addWidget]);
   
 
   return (
     <div 
-      className="relative w-screen h-screen overflow-hidden bg-black text-white cursor-default"
+      className="relative w-screen h-screen overflow-hidden bg-sys-media-bg text-sys-media-text cursor-default"
       onMouseMove={handleMouseMove}
       onClick={() => setShowUI(true)} // 点击也能唤醒 UI
     >
@@ -113,7 +113,7 @@ export default function WallpaperClient({ data }: Props) {
           />
         )}
         {/* 遮罩：让上面的白色文字更清晰，仅在顶部和底部加渐变 */}
-        <div className="absolute inset-0 bg-linear-to-b from-black/40 via-transparent to-black/60 pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-b from-sys-media-bg/40 via-transparent to-sys-media-bg/70 pointer-events-none" />
       </div>
 
       {/* --- 层级 2: 小工具层 (Widgets) --- */}
@@ -137,7 +137,7 @@ export default function WallpaperClient({ data }: Props) {
           >
             <Link 
               href="/gallery" 
-              className="flex items-center gap-2 px-4 py-2 bg-black/30 backdrop-blur-md rounded-full border border-white/10 hover:bg-black/50 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-sys-bg-surface/90 text-sys-text-base backdrop-blur-md rounded-full border border-sys-border hover:bg-sys-bg-elevated transition-colors"
             >
               <ArrowLeft size={20} />
               <span className="text-sm font-medium">返回画廊</span>
@@ -146,7 +146,7 @@ export default function WallpaperClient({ data }: Props) {
             <div className="flex gap-3">
               <button 
                 onClick={(e) => { e.stopPropagation(); setShowMenu(!showMenu); }}
-                className="p-3 bg-black/30 backdrop-blur-md rounded-full border border-white/10 hover:bg-white hover:text-black transition-all"
+                className="p-3 bg-sys-bg-surface/90 text-sys-text-base backdrop-blur-md rounded-full border border-sys-border hover:bg-sys-bg-inverse hover:text-sys-text-inverse transition-all"
               >
                 <Settings size={20} />
               </button>
@@ -171,21 +171,21 @@ export default function WallpaperClient({ data }: Props) {
             className="absolute bottom-0 left-0 right-0 z-20 p-8 flex justify-between items-end"
           >
             <div>
-              <h1 className="text-4xl font-bold mb-2 text-shadow">{data.title}</h1>
-              <div className="flex items-center gap-4 text-white/70 text-sm">
-                <span className="bg-white/10 px-2 py-1 rounded">
+              <h1 className="text-4xl font-bold mb-2 drop-shadow-sys-lg">{data.title}</h1>
+              <div className="flex items-center gap-4 text-sys-media-muted text-sm">
+                <span className="bg-sys-media-bg/60 text-sys-media-text px-2 py-1 rounded">
                    {data.resolution}
                 </span>
                 <span>By {data.author}</span>
                 {/* 显示来源标识 */}
                 {data.source === 'steam' && (
-                  <span className="bg-blue-500/20 text-blue-300 px-2 py-1 rounded flex items-center gap-1">
+                  <span className="bg-sys-bg-surface/95 text-sys-info px-2 py-1 rounded flex items-center gap-1">
                     <ExternalLink size={12} />
                     Steam 导入
                   </span>
                 )}
                 {data.source === 'upload' && (
-                  <span className="bg-green-500/20 text-green-300 px-2 py-1 rounded flex items-center gap-1">
+                  <span className="bg-sys-bg-surface/95 text-sys-text-success px-2 py-1 rounded flex items-center gap-1">
                     <Download size={12} />
                     用户上传
                   </span>
@@ -200,7 +200,7 @@ export default function WallpaperClient({ data }: Props) {
                   href={steamUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-lg font-semibold transition-all shadow-lg shadow-blue-500/20"
+                  className="flex items-center gap-2 px-6 py-3 bg-sys-primary text-sys-primary-text hover:bg-sys-primary-hover rounded-lg font-semibold transition-all shadow-sys-lg"
                 >
                   <ExternalLink size={20} />
                   在 Steam 创意工坊订阅
@@ -211,14 +211,14 @@ export default function WallpaperClient({ data }: Props) {
               {data.source === 'upload' && (
                 <button 
                   onClick={handleDownload}
-                  className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-lg font-semibold transition-all shadow-lg shadow-blue-500/20"
+                  className="flex items-center gap-2 px-6 py-3 bg-sys-primary text-sys-primary-text hover:bg-sys-primary-hover rounded-lg font-semibold transition-all shadow-sys-lg"
                 >
                   <Download size={20} />
                   下载到本地
                 </button>
               )}
 
-              <button className="p-3 bg-white/10 hover:bg-white/20 rounded-lg backdrop-blur-md transition-all">
+              <button className="p-3 bg-sys-bg-surface/90 text-sys-text-base hover:bg-sys-bg-elevated rounded-lg backdrop-blur-md transition-all">
                 <Share2 size={20} />
               </button>
             </div>

@@ -96,14 +96,14 @@ export default function GalleryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-8">
+    <div className="min-h-screen bg-sys-bg-page text-sys-text-base p-8">
       <div className="max-w-7xl mx-auto">
         {/* 头部导航 */}
         <header className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
             <Link
               href="/"
-              className="p-2 hover:bg-white/10 rounded-full transition-colors"
+              className="p-2 hover:bg-sys-bg-elevated rounded-full transition-colors"
             >
               <ArrowLeft size={24} />
             </Link>
@@ -113,7 +113,7 @@ export default function GalleryPage() {
           {/* 合集入口 */}
           <Link
             href="/collections"
-            className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-sys-bg-elevated/70 hover:bg-sys-bg-elevated rounded-full transition-colors"
           >
             <FolderOpen size={18} />
             <span>合集</span>
@@ -127,19 +127,19 @@ export default function GalleryPage() {
             <div className="flex-1 relative">
               <Search
                 size={20}
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40"
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-sys-text-muted"
               />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="搜索壁纸..."
-                className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-white/20"
+                className="w-full pl-12 pr-4 py-3 bg-sys-bg-surface border border-sys-border rounded-xl text-sys-text-base placeholder:text-sys-text-muted focus:outline-none focus:ring-2 focus:ring-sys-primary/20"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-1 hover:bg-white/10 rounded-full transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-1 hover:bg-sys-bg-elevated rounded-full transition-colors"
                 >
                   <X size={16} />
                 </button>
@@ -151,8 +151,8 @@ export default function GalleryPage() {
               onClick={() => setShowFilters(!showFilters)}
               className={`flex items-center gap-2 px-4 py-3 rounded-xl border transition-colors ${
                 showFilters
-                  ? "bg-white text-black border-white"
-                  : "bg-white/5 border-white/10 hover:bg-white/10"
+                  ? "bg-sys-primary text-sys-primary-text border-sys-border"
+                  : "bg-sys-bg-surface border-sys-border hover:bg-sys-bg-elevated"
               }`}
             >
               <Filter size={18} />
@@ -169,10 +169,10 @@ export default function GalleryPage() {
                 exit={{ opacity: 0, height: 0 }}
                 className="overflow-hidden"
               >
-                <div className="bg-white/5 border border-white/10 rounded-xl p-6 space-y-4">
+                <div className="bg-sys-bg-surface border border-sys-border rounded-xl p-6 space-y-4">
                   {/* 来源筛选 */}
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-white/60">
+                    <label className="block text-sm font-medium mb-2 text-sys-text-secondary">
                       来源
                     </label>
                     <div className="flex gap-2">
@@ -186,8 +186,8 @@ export default function GalleryPage() {
                           onClick={() => setSelectedSource(source.value)}
                           className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                             selectedSource === source.value
-                              ? "bg-white text-black"
-                              : "bg-white/10 text-white hover:bg-white/20"
+                              ? "bg-sys-primary text-sys-primary-text"
+                              : "bg-sys-bg-elevated/70 text-sys-text-base hover:bg-sys-bg-elevated"
                           }`}
                         >
                           {source.label}
@@ -199,7 +199,7 @@ export default function GalleryPage() {
                   {/* 标签筛选 */}
                   {allTags.length > 0 && (
                     <div>
-                      <label className="block text-sm font-medium mb-2 text-white/60">
+                      <label className="block text-sm font-medium mb-2 text-sys-text-secondary">
                         标签
                       </label>
                       <div className="flex flex-wrap gap-2">
@@ -209,8 +209,8 @@ export default function GalleryPage() {
                             onClick={() => toggleTag(tag)}
                             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                               selectedTags.includes(tag)
-                                ? "bg-white text-black"
-                                : "bg-white/10 text-white hover:bg-white/20"
+                                ? "bg-sys-primary text-sys-primary-text"
+                                : "bg-sys-bg-elevated/70 text-sys-text-base hover:bg-sys-bg-elevated"
                             }`}
                           >
                             {tag}
@@ -227,7 +227,7 @@ export default function GalleryPage() {
                         setSelectedTags([]);
                         setSelectedSource("all");
                       }}
-                      className="text-sm text-white/60 hover:text-white transition-colors"
+                      className="text-sm text-sys-text-secondary hover:text-sys-text-base transition-colors"
                     >
                       清除所有筛选
                     </button>
@@ -239,7 +239,7 @@ export default function GalleryPage() {
 
           {/* 当前筛选状态 */}
           {(searchQuery || selectedTags.length > 0 || selectedSource !== "all") && (
-            <div className="flex items-center gap-2 text-sm text-white/60">
+            <div className="flex items-center gap-2 text-sm text-sys-text-secondary">
               <span>
                 找到 {pagination.total} 张壁纸
               </span>
@@ -250,12 +250,12 @@ export default function GalleryPage() {
         {/* 壁纸网格 */}
         {isLoading ? (
           <div className="flex items-center justify-center py-20">
-            <div className="text-white/40">加载中...</div>
+            <div className="text-sys-text-muted">加载中...</div>
           </div>
         ) : wallpapers.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20">
-            <Search size={64} className="text-white/20 mb-4" />
-            <p className="text-white/40">没有找到匹配的壁纸</p>
+            <Search size={64} className="text-sys-text-disabled mb-4" />
+            <p className="text-sys-text-muted">没有找到匹配的壁纸</p>
           </div>
         ) : (
           <>
@@ -266,7 +266,7 @@ export default function GalleryPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     whileHover={{ y: -8 }}
-                    className="relative aspect-video rounded-xl overflow-hidden bg-gray-900 border border-white/5 transition-shadow duration-300 hover:shadow-2xl hover:shadow-purple-500/20"
+                    className="relative aspect-video rounded-xl overflow-hidden bg-sys-bg-surface border border-sys-border transition-shadow duration-300 hover:shadow-sys-2xl"
                   >
                     {/* 图片/封面 */}
                     <Image
@@ -279,29 +279,29 @@ export default function GalleryPage() {
 
                     {/* 动态壁纸标识 */}
                     {wp.type === "video" && (
-                      <div className="absolute top-2 right-2 bg-black/50 backdrop-blur-sm p-1.5 rounded-full">
-                        <PlayCircle size={16} className="text-white" />
+                      <div className="absolute top-2 right-2 bg-sys-media-bg/70 backdrop-blur-sm p-1.5 rounded-full">
+                        <PlayCircle size={16} className="text-sys-media-text" />
                       </div>
                     )}
 
                     {/* 来源标识 */}
-                    <div className="absolute top-2 left-2 bg-black/50 backdrop-blur-sm px-2 py-1 rounded-full">
-                      <span className="text-xs text-white">
+                    <div className="absolute top-2 left-2 bg-sys-media-bg/70 backdrop-blur-sm px-2 py-1 rounded-full">
+                      <span className="text-xs text-sys-media-text">
                         {wp.source === "steam" ? "Steam" : "上传"}
                       </span>
                     </div>
 
                     {/* 悬停遮罩 */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                      <h3 className="text-white font-semibold text-lg">{wp.title}</h3>
+                    <div className="absolute inset-0 bg-linear-to-t from-sys-media-bg/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                      <h3 className="text-sys-media-text font-semibold text-lg">{wp.title}</h3>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="text-white/60 text-xs">点击预览桌面效果</span>
+                        <span className="text-sys-media-muted text-xs">点击预览桌面效果</span>
                         {wp.tags && wp.tags.length > 0 && (
                           <div className="flex gap-1">
                             {wp.tags.slice(0, 2).map((tag) => (
                               <span
                                 key={tag}
-                                className="px-2 py-0.5 bg-white/20 rounded text-xs text-white"
+                                className="px-2 py-0.5 bg-sys-media-text/20 rounded text-xs text-sys-media-text"
                               >
                                 {tag}
                               </span>
@@ -324,7 +324,7 @@ export default function GalleryPage() {
                   whileTap={{ scale: 0.95 }}
                   onClick={() => goToPage(currentPage - 1)}
                   disabled={currentPage === 1}
-                  className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                  className="p-2 bg-sys-bg-elevated/70 hover:bg-sys-bg-elevated rounded-lg transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                 >
                   <ChevronLeft size={20} />
                 </motion.button>
@@ -341,7 +341,7 @@ export default function GalleryPage() {
                     .map((page, index, array) => (
                       <div key={page} className="flex items-center gap-1">
                         {index > 0 && array[index - 1] !== page - 1 && (
-                          <span className="px-2 text-white/40">...</span>
+                          <span className="px-2 text-sys-text-muted">...</span>
                         )}
                         <motion.button
                           whileHover={{ scale: 1.05 }}
@@ -349,8 +349,8 @@ export default function GalleryPage() {
                           onClick={() => goToPage(page)}
                           className={`min-w-[40px] h-10 px-3 rounded-lg transition-colors ${
                             page === currentPage
-                              ? "bg-white text-black font-semibold"
-                              : "bg-white/10 hover:bg-white/20"
+                              ? "bg-sys-primary text-sys-primary-text font-semibold"
+                              : "bg-sys-bg-elevated/70 hover:bg-sys-bg-elevated"
                           }`}
                         >
                           {page}
@@ -365,7 +365,7 @@ export default function GalleryPage() {
                   whileTap={{ scale: 0.95 }}
                   onClick={() => goToPage(currentPage + 1)}
                   disabled={currentPage === pagination.totalPages}
-                  className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                  className="p-2 bg-sys-bg-elevated/70 hover:bg-sys-bg-elevated rounded-lg transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                 >
                   <ChevronRight size={20} />
                 </motion.button>
@@ -373,7 +373,7 @@ export default function GalleryPage() {
             )}
 
             {/* 分页信息 */}
-            <div className="text-center text-sm text-white/40 mt-4">
+            <div className="text-center text-sm text-sys-text-muted mt-4">
               第 {currentPage} / {pagination.totalPages} 页，共 {pagination.total} 张壁纸
             </div>
           </>

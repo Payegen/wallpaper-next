@@ -162,26 +162,26 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-32 pb-20 px-4 flex justify-center">
+    <div className="min-h-screen bg-sys-bg-page pt-32 pb-20 px-4 flex justify-center">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-2xl"
       >
         <div className="mb-8 text-center space-y-2">
-          <h1 className="text-3xl font-bold bg-linear-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-linear-to-r from-sys-text-base to-sys-text-secondary bg-clip-text text-transparent">
             发布新壁纸
           </h1>
-          <p className="text-muted-foreground">分享你的创意，支持 4K 图片与动态壁纸</p>
+          <p className="text-sys-text-secondary">分享你的创意，支持 4K 图片与动态壁纸</p>
         </div>
 
 {/* --- 模式切换 Tab --- */}
-        <div className="flex p-1 bg-muted/50 rounded-xl border border-border/50 mb-8">
+        <div className="flex p-1 bg-sys-bg-surface/50 rounded-xl border border-sys-border/50 mb-8">
           <button
             onClick={() => setMode('local')}
             className={cn(
               "flex-1 py-2.5 rounded-lg text-sm font-medium transition-all",
-              mode === 'local' ? "bg-background shadow-sm text-foreground" : "text-muted-foreground hover:text-foreground"
+              mode === 'local' ? "bg-sys-bg-page shadow-sys-sm text-sys-text-base" : "text-sys-text-secondary hover:text-sys-text-base"
             )}
           >
             本地上传
@@ -190,7 +190,7 @@ export default function UploadPage() {
             onClick={() => setMode('steam')}
             className={cn(
               "flex-1 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-2",
-              mode === 'steam' ? "bg-background shadow-sm text-foreground" : "text-muted-foreground hover:text-foreground"
+              mode === 'steam' ? "bg-sys-bg-page shadow-sys-sm text-sys-text-base" : "text-sys-text-secondary hover:text-sys-text-base"
             )}
           >
             <DownloadCloud size={16}/> Steam 导入
@@ -198,7 +198,7 @@ export default function UploadPage() {
         </div>
 
 {   mode === 'local' ? (
-    <form onSubmit={handleSubmit} className="space-y-8 bg-card/50 backdrop-blur-xl border border-border p-8 rounded-3xl shadow-xl">
+    <form onSubmit={handleSubmit} className="space-y-8 bg-sys-bg-surface/50 backdrop-blur-xl border border-sys-border p-8 rounded-3xl shadow-sys-xl">
             
             {/* --- A. 文件上传区域 --- */}
             <div className="space-y-2">
@@ -212,15 +212,15 @@ export default function UploadPage() {
                     onDrop={onDrop}
                     onClick={() => fileInputRef.current?.click()}
                     className={cn(
-                    "relative group cursor-pointer flex flex-col items-center justify-center w-full h-64 rounded-2xl border-2 border-dashed border-border/50 bg-background/50 transition-all duration-300",
-                    isDragging ? "border-primary bg-primary/5 scale-[1.01]" : "hover:border-primary/50 hover:bg-muted/50"
+                    "relative group cursor-pointer flex flex-col items-center justify-center w-full h-64 rounded-2xl border-2 border-dashed border-sys-border/50 bg-sys-bg-page/50 transition-all duration-300",
+                    isDragging ? "border-sys-primary bg-sys-primary/5 scale-[1.01]" : "hover:border-sys-primary/50 hover:bg-sys-bg-surface/50"
                     )}
                 >
-                    <div className="p-4 rounded-full bg-muted group-hover:bg-background transition-colors mb-4 border border-border">
-                    <UploadCloud className="w-8 h-8 text-muted-foreground group-hover:text-primary transition-colors" />
+                    <div className="p-4 rounded-full bg-sys-bg-surface group-hover:bg-sys-bg-page transition-colors mb-4 border border-sys-border">
+                    <UploadCloud className="w-8 h-8 text-sys-text-secondary group-hover:text-sys-primary transition-colors" />
                     </div>
-                    <p className="text-sm font-medium text-foreground">点击或拖拽上传</p>
-                    <p className="text-xs text-muted-foreground mt-1">支持 JPG, PNG, WEBM, MP4 (Max 50MB)</p>
+                    <p className="text-sm font-medium text-sys-text-base">点击或拖拽上传</p>
+                    <p className="text-xs text-sys-text-secondary mt-1">支持 JPG, PNG, WEBM, MP4 (Max 50MB)</p>
                     <input 
                     type="file" 
                     ref={fileInputRef} 
@@ -231,7 +231,7 @@ export default function UploadPage() {
                 </div>
                 ) : (
                 // 2. 已选择文件：显示预览图
-                <div className="relative w-full h-64 rounded-2xl overflow-hidden border border-border bg-black group">
+                <div className="relative w-full h-64 rounded-2xl overflow-hidden border border-sys-border bg-sys-media-bg group">
                     {type === 'video' && previewUrl ? (
                     <video src={previewUrl} className="w-full h-full object-contain" controls />
                     ) : (
@@ -242,7 +242,7 @@ export default function UploadPage() {
                     <button
                     type="button"
                     onClick={clearFile}
-                    className="absolute top-4 right-4 p-2 bg-black/50 backdrop-blur-md rounded-full text-white hover:bg-red-500/80 transition-colors"
+                    className="absolute top-4 right-4 p-2 bg-sys-media-bg/70 backdrop-blur-md rounded-full text-sys-media-text hover:bg-sys-text-danger/80 transition-colors"
                     >
                     <X size={20} />
                     </button>
@@ -267,7 +267,7 @@ export default function UploadPage() {
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder="给壁纸起个好听的名字"
-                        className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                        className="w-full px-4 py-3 rounded-xl bg-sys-bg-page/50 border border-sys-border focus:ring-2 focus:ring-sys-primary/20 focus:border-sys-primary outline-none transition-all"
                         required
                     />
                     </div>
@@ -275,13 +275,13 @@ export default function UploadPage() {
                     {/* 类型选择 (Segment Control) */}
                     <div className="space-y-2">
                     <label className="text-sm font-medium ml-1">类型</label>
-                    <div className="flex p-1 bg-muted/50 rounded-xl border border-border/50">
+                    <div className="flex p-1 bg-sys-bg-surface/50 rounded-xl border border-sys-border/50">
                         <button
                         type="button"
                         onClick={() => setType('image')}
                         className={cn(
                             "flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all",
-                            type === 'image' ? "bg-background text-primary shadow-sm" : "text-muted-foreground hover:text-foreground"
+                            type === 'image' ? "bg-sys-bg-page text-sys-primary shadow-sys-sm" : "text-sys-text-secondary hover:text-sys-text-base"
                         )}
                         >
                         <ImageIcon size={16} /> 图片
@@ -291,7 +291,7 @@ export default function UploadPage() {
                         onClick={() => setType('video')}
                         className={cn(
                             "flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all",
-                            type === 'video' ? "bg-background text-primary shadow-sm" : "text-muted-foreground hover:text-foreground"
+                            type === 'video' ? "bg-sys-bg-page text-sys-primary shadow-sys-sm" : "text-sys-text-secondary hover:text-sys-text-base"
                         )}
                         >
                         <Film size={16} /> 动态壁纸
@@ -307,7 +307,7 @@ export default function UploadPage() {
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder="写点什么介绍这张壁纸..."
                         rows={3}
-                        className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all resize-none"
+                        className="w-full px-4 py-3 rounded-xl bg-sys-bg-page/50 border border-sys-border focus:ring-2 focus:ring-sys-primary/20 focus:border-sys-primary outline-none transition-all resize-none"
                     />
                     </div>
 
@@ -318,8 +318,8 @@ export default function UploadPage() {
                     className={cn(
                         "w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all",
                         uploadStatus === 'success' 
-                        ? "bg-green-500 text-white"
-                        : "bg-primary text-primary-foreground hover:opacity-90 active:scale-[0.98]",
+                        ? "bg-sys-text-success text-sys-primary-text"
+                        : "bg-sys-primary text-sys-primary-text hover:opacity-90 active:scale-[0.98]",
                         (isUploading || !title) && "opacity-50 cursor-not-allowed"
                     )}
                     >
@@ -339,15 +339,15 @@ export default function UploadPage() {
             </form>
     ) : (
         // ... 新的 Steam 导入 Form ...
-            <form onSubmit={handleSteamImport} className="space-y-8 bg-card/50 backdrop-blur-xl border border-border p-8 rounded-3xl shadow-xl">
+            <form onSubmit={handleSteamImport} className="space-y-8 bg-sys-bg-surface/50 backdrop-blur-xl border border-sys-border p-8 rounded-3xl shadow-sys-xl">
                 <div className="space-y-4">
-                    <div className="flex flex-col items-center justify-center p-8 border-2 border-dashed border-border/50 rounded-2xl bg-muted/20">
-                        <div className="p-4 bg-[#171a21] rounded-full mb-4">
+                    <div className="flex flex-col items-center justify-center p-8 border-2 border-dashed border-sys-border/50 rounded-2xl bg-sys-bg-surface/20">
+                        <div className="p-4 bg-sys-bg-elevated rounded-full mb-4">
                         {/* Steam Logo 颜色 */}
-                        <LinkIcon size={32} className="text-[#66c0f4]" />
+                        <LinkIcon size={32} className="text-sys-info" />
                         </div>
                         <h3 className="text-lg font-bold">粘贴创意工坊链接</h3>
-                        <p className="text-sm text-muted-foreground text-center mt-2">
+                        <p className="text-sm text-sys-text-secondary text-center mt-2">
                         支持 Wallpaper Engine 官方创意工坊链接。<br/>
                         例如: https://steamcommunity.com/sharedfiles/filedetails/?id=xxxx
                         </p>
@@ -360,7 +360,7 @@ export default function UploadPage() {
                         value={steamUrl}
                         onChange={(e) => setSteamUrl(e.target.value)}
                         placeholder="https://steamcommunity.com/..."
-                        className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border focus:ring-2 focus:ring-[#66c0f4]/50 outline-none transition-all"
+                        className="w-full px-4 py-3 rounded-xl bg-sys-bg-page/50 border border-sys-border focus:ring-2 focus:ring-sys-primary/50 outline-none transition-all"
                         required
                         />
                     </div>
@@ -372,8 +372,8 @@ export default function UploadPage() {
                     className={cn(
                         "w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all",
                         uploadStatus === 'success' 
-                        ? "bg-green-500 text-white"
-                        : "bg-[#171a21] text-white hover:bg-[#1b2838]", // Steam 风格按钮
+                        ? "bg-sys-text-success text-sys-primary-text"
+                        : "bg-sys-primary text-sys-primary-text hover:bg-sys-primary-hover", // Steam 风格按钮
                         (isUploading || !steamUrl) && "opacity-50 cursor-not-allowed"
                     )}
                     >

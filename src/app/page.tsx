@@ -1,153 +1,72 @@
-'use client';
+import Link from "next/link";
+import { ArrowUpRight, Layers3, MonitorPlay, MousePointer2, SlidersHorizontal } from "lucide-react";
+import { HomeHero } from "@/components/home/HomeHero";
+import { HomeShowcase } from "@/components/home/HomeShowcase";
+import { ButtonLink } from "@/components/ui/Button";
 
-import Carousel from '@/components/ui/Carousel';
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
-import { ArrowRight, Layers, MonitorPlay } from 'lucide-react';
-import Link from 'next/link';
-import { useEffect, useRef } from 'react';
-
-// 动画变体配置
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
-};
-
-const stagger = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
+const experiences = [
+  { number: "01", icon: MonitorPlay, title: "让风景，动起来。", description: "静态的风景，或是流动的瞬间。找到适合自己节奏的壁纸，让每一次打开都有新鲜感。", href: "/gallery", link: "发现更多壁纸" },
+  { number: "02", icon: MousePointer2, title: "每次靠近，都有回应。", description: "轻轻移动指尖，看远山、光线与文字各自舒展。细微的层次，带来恰到好处的惊喜。", href: "#desktop-preview", link: "再体验一次" },
+  { number: "03", icon: SlidersHorizontal, title: "喜欢什么，就放什么。", description: "把时钟、搜索栏与待办面板放进桌面。自由摆放，让日常的小习惯都有舒服的位置。", href: "/docs", link: "看看使用指南" },
+];
 
 export default function Home() {
-
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef, // 如果需要，可以指定一个元素作为滚动目标
-  }); // 如果需要，可以使用滚动位置做一些交互
-  
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log("当前滚动进度:", latest);
-  });
-  useEffect(
-    () => {
-      console.log(scrollYProgress);
-      
-    },[ scrollYProgress]
-  )
   return (
-    <main className="min-h-screen flex flex-col" ref={containerRef}>
+    <div className="home-page bg-sys-bg-page text-sys-text-base">
+      <HomeHero />
 
-      <motion.div style={{
-        scaleX: scrollYProgress,
-        position: "fixed",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: 10,
-                    originX: 0,
-                    backgroundColor: "#ff0088",
-      }}>
-          {scrollYProgress}
-      </motion.div>
-      {/* --- Hero Section: 全屏首屏 --- */}
-      <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
-        
-        {/* 背景光效 (用 CSS 模拟氛围感) */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-200 h-125 bg-purple-600/30 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-150 h-150 bg-blue-600/20 blur-[100px] rounded-full pointer-events-none" />
+      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-8 gap-y-3 border-y border-sys-border px-5 py-5 text-[11px] text-sys-text-muted sm:gap-x-14 sm:text-xs">
+        <span className="flex items-center gap-2"><span className="size-1 rounded-full bg-sys-primary" />静态与动态壁纸</span>
+        <span className="flex items-center gap-2"><span className="size-1 rounded-full bg-sys-info" />自由组合的小工具</span>
+        <span className="flex items-center gap-2"><span className="size-1 rounded-full bg-sys-accent" />属于你的灵感合集</span>
+      </div>
 
-        {/* 内容区域 */}
-        <motion.div 
-          className="z-10 text-center px-4"
-          variants={stagger}
-          initial="initial"
-          animate="animate"
-        >
-          <motion.h1 
-            variants={fadeInUp}
-            className="text-6xl md:text-8xl font-bold tracking-tighter bg-clip-text text-transparent bg-linear-to-r from-white via-white to-white/50 mb-6"
-          >
-            重塑你的 <br /> Web 桌面
-          </motion.h1>
-          
-          <motion.p 
-            variants={fadeInUp}
-            className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10"
-          >
-            不仅仅是壁纸。我们将wallpaper风格的高清动态壁纸与实用的 Web 小工具完美融合，
-            在浏览器中打造你的专属工作台。
-          </motion.p>
+      <HomeShowcase />
 
-          <motion.div variants={fadeInUp} className="flex gap-4 justify-center">
-            {/* 进入画廊按钮 */}
-            <Link href="/gallery">
-              <button className="group relative px-8 py-3 rounded-full bg-white text-black font-semibold hover:bg-gray-100 transition-all flex items-center gap-2">
-                开始探索
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </Link>
-            
-            <button className="px-8 py-3 rounded-full border border-white/20 hover:bg-white/10 transition-all">
-              关于项目
-            </button>
-
-            <Link href="/about">
-    <button className="px-8 py-3 rounded-full border border-white/20 text-white hover:bg-white/10 transition-all">
-      关于我
-    </button>
-  </Link>
-          </motion.div>
-        </motion.div>
-
-        {/* 底部滚动提示 */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="absolute bottom-10 animate-bounce"
-        >
-          <span className="text-xs text-gray-500 uppercase tracking-widest">Scroll Down</span>
-        </motion.div>
-      </section>
-
-      {/* --- Features Section: 特性介绍 --- */}
-      <section className="py-32 px-6 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        <div>
-          <h2 className="text-4xl font-bold mb-6">沉浸式视觉体验</h2>
-          <p className="text-gray-400 text-lg mb-8">
-            完美支持 4K 图片与 WebM 动态视频。无论是静谧的风景还是赛博朋克都市，
-            都能通过 WebGL 技术流畅呈现。
-          </p>
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/10">
-              <MonitorPlay className="w-8 h-8 text-purple-400" />
-              <div>
-                <h3 className="font-semibold">动态壁纸引擎</h3>
-                <p className="text-sm text-gray-500">支持 Steam Wallpaper Engine 风格视频</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/10">
-              <Layers className="w-8 h-8 text-blue-400" />
-              <div>
-                <h3 className="font-semibold">组件化布局</h3>
-                <p className="text-sm text-gray-500">天气、时钟、待办事项随意拖拽</p>
-              </div>
-            </div>
+      <section id="experience" aria-labelledby="experience-title" className="scroll-mt-24 border-y border-sys-border bg-sys-bg-surface/60 px-5 py-20 sm:px-8 sm:py-28">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 max-w-2xl">
+            <p className="mb-4 font-mono text-[10px] tracking-[0.2em] text-sys-text-muted">LITTLE DETAILS, EVERY DAY</p>
+            <h2 id="experience-title" className="text-3xl font-semibold leading-snug tracking-tight sm:text-4xl">给平常的日子，<br />加一点喜欢的细节。</h2>
+          </div>
+          <div className="grid gap-5 md:grid-cols-3">
+            {experiences.map(({ number, icon: Icon, title, description, href, link }) => (
+              <article key={number} className="flex flex-col rounded-2xl border border-sys-border bg-sys-bg-page p-6 sm:p-8">
+                <div className="mb-10 flex items-center justify-between">
+                  <span className="flex size-11 items-center justify-center rounded-xl border border-sys-border bg-sys-bg-surface text-sys-primary"><Icon size={20} strokeWidth={1.6} aria-hidden="true" /></span>
+                  <span className="font-mono text-[10px] text-sys-text-muted">/ {number}</span>
+                </div>
+                <h3 className="mb-4 text-xl font-medium tracking-tight">{title}</h3>
+                <p className="mb-6 flex-1 text-sm leading-7 text-sys-text-secondary">{description}</p>
+                <ButtonLink href={href} variant="ghost" size="sm" className="self-start px-0 hover:bg-transparent" trailingIcon={<ArrowUpRight />}>{link}</ButtonLink>
+              </article>
+            ))}
           </div>
         </div>
-        
-        {/* 这里是一个示意图占位，实际开发时可以用 Next/Image 放截图 */}
-        <div className="relative aspect-video bg-linear-to-tr from-gray-800 to-gray-900 rounded-2xl border border-white/10 overflow-hidden group">
-            <div className="absolute inset-0 flex items-center justify-center text-gray-600 font-mono">
-                {/* [ 预览图 / 3D 模型演示区 ] */}
-<Carousel/>
-            </div>
+      </section>
+
+      <section className="px-5 py-20 sm:px-8 sm:py-28" aria-labelledby="start-title">
+        <div className="home-cta mx-auto max-w-7xl rounded-[2rem] border border-sys-border px-6 py-16 text-center sm:py-20">
+          <span className="mb-6 inline-flex size-12 items-center justify-center rounded-2xl border border-sys-border bg-sys-bg-page text-sys-primary shadow-sys-sm"><Layers3 size={24} strokeWidth={1.5} aria-hidden="true" /></span>
+          <h2 id="start-title" className="text-3xl font-semibold leading-snug tracking-tight sm:text-5xl">你的下一次打开，<br className="sm:hidden" />从喜欢开始。</h2>
+          <p className="mx-auto mb-8 mt-5 max-w-lg text-sm leading-7 text-sys-text-secondary">不妨先选一张壁纸。剩下的，慢慢变成你的样子。</p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <ButtonLink href="/gallery" size="lg" trailingIcon={<ArrowUpRight />}>找到我的壁纸</ButtonLink>
+            <ButtonLink href="/collections" variant="outline" size="lg">逛逛灵感合集</ButtonLink>
+          </div>
         </div>
       </section>
 
-    </main>
+      <footer className="border-t border-sys-border px-5 py-8 sm:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 sm:flex-row">
+          <Link href="/" className="flex items-center gap-2 text-sm font-medium"><Layers3 size={17} className="text-sys-primary" aria-hidden="true" />Wallpaper Next</Link>
+          <p className="font-mono text-[10px] tracking-wider text-sys-text-muted">A LITTLE SPACE, A LOT OF YOU.</p>
+          <nav aria-label="页脚导航" className="flex gap-6 text-xs text-sys-text-secondary">
+            <Link href="/docs" className="hover:text-sys-primary">使用指南</Link>
+            <Link href="/about" className="hover:text-sys-primary">关于作者</Link>
+          </nav>
+        </div>
+      </footer>
+    </div>
   );
 }

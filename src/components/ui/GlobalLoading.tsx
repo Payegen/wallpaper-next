@@ -42,7 +42,7 @@ export default function GlobalLoading({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            className="absolute inset-0 bg-sys-bg-overlay/80 backdrop-blur-sm"
           />
           
           {/* 加载内容 */}
@@ -51,14 +51,14 @@ export default function GlobalLoading({
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ type: "spring", damping: 20, stiffness: 300 }}
-            className="relative z-10 flex flex-col items-center gap-4"
+            className="relative z-10 flex flex-col items-center gap-4 rounded-2xl border border-sys-border bg-sys-bg-elevated px-8 py-6 text-sys-text-base shadow-sys-xl"
           >
             {/* 旋转加载图标 */}
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
             >
-              <Loader2 className="w-12 h-12 text-purple-500" />
+              <Loader2 className="w-12 h-12 text-sys-primary" />
             </motion.div>
             
             {/* 加载文字 */}
@@ -67,7 +67,7 @@ export default function GlobalLoading({
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="text-gray-300 text-sm font-medium"
+                className="text-sys-text-secondary text-sm font-medium"
               >
                 {text}
               </motion.p>
@@ -89,9 +89,9 @@ export function InlineLoading({ text = "加载中..." }: { text?: string }) {
         animate={{ rotate: 360 }}
         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
       >
-        <Loader2 className="w-6 h-6 text-purple-500" />
+        <Loader2 className="w-6 h-6 text-sys-primary" />
       </motion.div>
-      <span className="text-gray-400 text-sm">{text}</span>
+      <span className="text-sys-text-secondary text-sm">{text}</span>
     </div>
   );
 }
@@ -102,9 +102,9 @@ export function InlineLoading({ text = "加载中..." }: { text?: string }) {
 export function SkeletonLoading() {
   return (
     <div className="animate-pulse space-y-4">
-      <div className="h-32 bg-white/5 rounded-lg" />
-      <div className="h-4 bg-white/5 rounded w-3/4" />
-      <div className="h-4 bg-white/5 rounded w-1/2" />
+      <div className="h-32 bg-sys-bg-surface rounded-lg" />
+      <div className="h-4 bg-sys-bg-surface rounded w-3/4" />
+      <div className="h-4 bg-sys-bg-surface rounded w-1/2" />
     </div>
   );
 }

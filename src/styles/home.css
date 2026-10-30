@@ -1,0 +1,110 @@
+/* Atropos 的几何布局来自库；所有视觉颜色继续使用系统主题。 */
+.home-page {
+  overflow: clip;
+}
+
+.home-hero-halo {
+  background:
+    radial-gradient(ellipse 65% 35% at 50% 25%, rgb(var(--sys-primary) / 0.07), transparent 80%),
+    radial-gradient(ellipse 40% 30% at 80% 70%, rgb(var(--sys-accent) / 0.04), transparent 80%);
+}
+
+.home-gradient-text {
+  color: transparent;
+  background-image: linear-gradient(115deg, rgb(var(--sys-primary)), rgb(var(--sys-accent)));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.parallax-card .atropos-inner {
+  isolation: isolate;
+}
+
+.parallax-card .atropos-highlight {
+  background-image: radial-gradient(circle at 50%, rgb(var(--sys-media-text) / 0.14), transparent 50%);
+}
+
+.parallax-card .atropos-shadow {
+  background-color: rgb(var(--sys-bg-overlay));
+}
+
+.home-hero-scene {
+  border-radius: 1.75rem;
+  box-shadow: var(--sys-shadow-2xl);
+}
+
+.scene-artwork {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.scene-artwork--cosmic {
+  --scene-tone-a: var(--sys-primary);
+  --scene-tone-b: var(--sys-info);
+  --scene-tone-c: var(--sys-accent);
+}
+
+.scene-artwork--alpine {
+  --scene-tone-a: var(--sys-info);
+  --scene-tone-b: var(--sys-text-success);
+  --scene-tone-c: var(--sys-primary);
+}
+
+.scene-artwork--dune {
+  --scene-tone-a: var(--sys-accent);
+  --scene-tone-b: var(--sys-primary);
+  --scene-tone-c: var(--sys-text-warning);
+}
+
+.scene-layer {
+  position: absolute;
+  inset: -8%;
+  width: 116%;
+  height: 116%;
+  max-width: none;
+  overflow: visible;
+}
+
+.home-cta {
+  background-color: rgb(var(--sys-bg-surface));
+  background-image:
+    radial-gradient(ellipse at 0% 100%, rgb(var(--sys-primary) / 0.08), transparent 60%),
+    radial-gradient(ellipse at 100% 0%, rgb(var(--sys-accent) / 0.05), transparent 60%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero-copy {
+    animation: home-reveal 650ms both;
+  }
+
+  .home-hero-preview {
+    animation: home-reveal 800ms 100ms both;
+  }
+
+  @keyframes home-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax-card .atropos-highlight,
+  .parallax-card .atropos-shadow {
+    display: none;
+  }
+
+  .parallax-card,
+  .parallax-card .atropos-scale,
+  .parallax-card .atropos-rotate,
+  .parallax-card [data-atropos-offset] {
+    transform: none !important;
+    transition: none !important;
+  }
+}

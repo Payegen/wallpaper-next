@@ -78,7 +78,7 @@ export default function CollectionsPage() {
   if (!isLoaded) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-muted-foreground">加载中...</div>
+        <div className="text-sys-text-secondary">加载中...</div>
       </div>
     );
   }
@@ -90,14 +90,14 @@ export default function CollectionsPage() {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold mb-2">壁纸合集</h1>
-            <p className="text-muted-foreground">管理和浏览壁纸合集</p>
+            <p className="text-sys-text-secondary">管理和浏览壁纸合集</p>
           </div>
           {isAdmin && (
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setShowCreateForm(true)}
-              className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+              className="flex items-center gap-2 px-6 py-3 bg-sys-primary text-sys-primary-text rounded-lg hover:bg-sys-primary-hover transition-colors"
             >
               <Plus size={20} />
               创建合集
@@ -110,13 +110,13 @@ export default function CollectionsPage() {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-8 p-6 bg-card border border-border rounded-lg"
+            className="mb-8 p-6 bg-sys-bg-surface border border-sys-border rounded-lg"
           >
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-semibold">创建新合集</h2>
               <button
                 onClick={() => setShowCreateForm(false)}
-                className="p-2 hover:bg-muted rounded-lg transition-colors"
+                className="p-2 hover:bg-sys-bg-surface rounded-lg transition-colors"
               >
                 <X size={20} />
               </button>
@@ -132,7 +132,7 @@ export default function CollectionsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-2 bg-sys-bg-page border border-sys-border rounded-lg focus:outline-none focus:ring-2 focus:ring-sys-primary"
                   placeholder="输入合集名称"
                   required
                 />
@@ -144,7 +144,7 @@ export default function CollectionsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, description: e.target.value })
                   }
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                  className="w-full px-4 py-2 bg-sys-bg-page border border-sys-border rounded-lg focus:outline-none focus:ring-2 focus:ring-sys-primary resize-none"
                   placeholder="输入合集描述"
                   rows={3}
                 />
@@ -159,7 +159,7 @@ export default function CollectionsPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, coverImage: e.target.value })
                   }
-                  className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-2 bg-sys-bg-page border border-sys-border rounded-lg focus:outline-none focus:ring-2 focus:ring-sys-primary"
                   placeholder="https://example.com/cover.jpg"
                 />
               </div>
@@ -180,14 +180,14 @@ export default function CollectionsPage() {
               <div className="flex gap-3">
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+                  className="px-6 py-2 bg-sys-primary text-sys-primary-text rounded-lg hover:bg-sys-primary-hover transition-colors"
                 >
                   创建
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowCreateForm(false)}
-                  className="px-6 py-2 bg-muted text-muted-foreground rounded-lg hover:bg-muted/80 transition-colors"
+                  className="px-6 py-2 bg-sys-bg-surface text-sys-text-secondary rounded-lg hover:bg-sys-bg-surface/80 transition-colors"
                 >
                   取消
                 </button>
@@ -198,13 +198,13 @@ export default function CollectionsPage() {
 
         {/* 合集列表 */}
         {isLoading ? (
-          <div className="text-center py-12 text-muted-foreground">
+          <div className="text-center py-12 text-sys-text-secondary">
             加载中...
           </div>
         ) : collections.length === 0 ? (
           <div className="text-center py-12">
-            <FolderOpen size={64} className="mx-auto mb-4 text-muted-foreground" />
-            <p className="text-muted-foreground">还没有合集，创建一个吧！</p>
+            <FolderOpen size={64} className="mx-auto mb-4 text-sys-text-secondary" />
+            <p className="text-sys-text-secondary">还没有合集，创建一个吧！</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -214,11 +214,11 @@ export default function CollectionsPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -5 }}
-                className="group bg-card border border-border rounded-lg overflow-hidden cursor-pointer hover:border-primary/50 transition-colors"
+                className="group bg-sys-bg-surface border border-sys-border rounded-lg overflow-hidden cursor-pointer hover:border-sys-primary/50 transition-colors"
                 onClick={() => router.push(`/collections/${collection.id}`)}
               >
                 {/* 封面 */}
-                <div className="aspect-video bg-muted relative overflow-hidden">
+                <div className="aspect-video bg-sys-bg-surface relative overflow-hidden">
                   {collection.coverImage ? (
                     <img
                       src={collection.coverImage}
@@ -227,12 +227,12 @@ export default function CollectionsPage() {
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <FolderOpen size={48} className="text-muted-foreground" />
+                      <FolderOpen size={48} className="text-sys-text-secondary" />
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-sys-bg-overlay/60 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <p className="text-white text-sm">
+                    <p className="text-sys-text-base text-sm">
                       {collection._count.wallpapers} 张壁纸
                     </p>
                   </div>
@@ -246,7 +246,7 @@ export default function CollectionsPage() {
                         {collection.name}
                       </h3>
                       {collection.description && (
-                        <p className="text-sm text-muted-foreground line-clamp-2">
+                        <p className="text-sm text-sys-text-secondary line-clamp-2">
                           {collection.description}
                         </p>
                       )}
@@ -258,7 +258,7 @@ export default function CollectionsPage() {
                             e.stopPropagation();
                             router.push(`/collections/${collection.id}/edit`);
                           }}
-                          className="p-2 hover:bg-muted rounded-lg transition-colors"
+                          className="p-2 hover:bg-sys-bg-surface rounded-lg transition-colors"
                         >
                           <Edit2 size={16} />
                         </button>
@@ -270,19 +270,19 @@ export default function CollectionsPage() {
                               collection.name
                             );
                           }}
-                          className="p-2 hover:bg-destructive/10 text-destructive rounded-lg transition-colors"
+                          className="p-2 hover:bg-sys-text-danger/10 text-sys-text-danger rounded-lg transition-colors"
                         >
                           <Trash2 size={16} />
                         </button>
                       </div>
                     )}
                   </div>
-                  <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-2 mt-2 text-xs text-sys-text-secondary">
                     <span>
                       {new Date(collection.createdAt).toLocaleDateString()}
                     </span>
                     {!collection.isPublic && (
-                      <span className="px-2 py-1 bg-muted rounded">
+                      <span className="px-2 py-1 bg-sys-bg-surface rounded">
                         私有
                       </span>
                     )}

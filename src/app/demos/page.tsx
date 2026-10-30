@@ -24,10 +24,10 @@ export default function DemosPage() {
   return (
     <div className="min-h-screen w-full pt-32 pb-20 px-6 max-w-7xl mx-auto">
       <div className="mb-12 space-y-4">
-        <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+        <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-sys-text-base to-sys-text-secondary bg-clip-text text-transparent">
           交互实验室
         </h1>
-        <p className="text-muted-foreground max-w-2xl text-lg">
+        <p className="text-sys-text-secondary max-w-2xl text-lg">
           探索 Next.js 与 Framer Motion 的无限可能。
         </p>
       </div>
@@ -45,7 +45,7 @@ export default function DemosPage() {
               <Link 
                 // ✅ 这里链接变为动态路由
                 href={`/demos/${demo.slug}`}
-                className="group relative block h-full p-6 rounded-3xl border border-border bg-card/50 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-black/5 dark:hover:shadow-white/5 hover:-translate-y-1"
+                className="group relative block h-full p-6 rounded-3xl border border-sys-border bg-sys-bg-surface/50 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:shadow-sys-2xl   hover:-translate-y-1"
               >
                 <div className={cn(
                   "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-linear-to-br",
@@ -54,14 +54,14 @@ export default function DemosPage() {
 
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="flex justify-between items-start mb-4">
-                    <div className="p-3 rounded-2xl bg-background/80 border border-border/50 group-hover:scale-110 transition-transform duration-300">
+                    <div className="p-3 rounded-2xl bg-sys-bg-page/80 border border-sys-border/50 group-hover:scale-110 transition-transform duration-300">
                       <Icon size={24} />
                     </div>
-                    <ArrowUpRight className="text-muted-foreground group-hover:text-foreground transition-colors" />
+                    <ArrowUpRight className="text-sys-text-secondary group-hover:text-sys-text-base transition-colors" />
                   </div>
 
                   <h3 className="text-xl font-bold mb-2">{demo.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                  <p className="text-sys-text-secondary text-sm leading-relaxed">
                     {demo.description}
                   </p>
                 </div>

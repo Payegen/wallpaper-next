@@ -28,15 +28,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    /* 
-      1. ✅ 移除 className="dark" 
-      2. ✅ 保留 suppressHydrationWarning (这正是为了消除 next-themes 动态修改 class 带来的警告)
-    */
-   <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        variables: {
+          colorPrimary: "rgb(var(--sys-primary))",
+          colorPrimaryForeground: "rgb(var(--sys-primary-text))",
+          colorBackground: "rgb(var(--sys-bg-page))",
+          colorForeground: "rgb(var(--sys-text-base))",
+          colorMuted: "rgb(var(--sys-bg-surface))",
+          colorMutedForeground: "rgb(var(--sys-text-secondary))",
+          colorInput: "rgb(var(--sys-bg-surface))",
+          colorInputForeground: "rgb(var(--sys-text-base))",
+          colorBorder: "rgb(var(--sys-border))",
+          colorRing: "rgb(var(--sys-primary))",
+          colorDanger: "rgb(var(--sys-text-danger))",
+          fontFamily: "var(--font-geist-sans), sans-serif",
+        },
+      }}
+    >
     <html lang="zh-CN" suppressHydrationWarning>
       <body
-        className={cn(`${geistSans.variable} ${geistMono.variable} antialiased`, 
-          "antialiased bg-sys-bg-page text-sys-bg-page")}
+        className={cn(geistSans.variable, geistMono.variable,
+          "antialiased bg-sys-bg-page text-sys-text-base")}
       >
         {/* 路由切换进度条 */}
         <RouteLoading />

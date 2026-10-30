@@ -24,10 +24,10 @@ interface ArticleEditorProps {
 }
 
 const categoryOptions = [
-  { value: 'tutorial', label: '教程', icon: BookOpen, color: 'text-blue-400' },
-  { value: 'guide', label: '指南', icon: Sparkles, color: 'text-purple-400' },
-  { value: 'announcement', label: '公告', icon: Megaphone, color: 'text-green-400' },
-  { value: 'tips', label: '技巧', icon: Lightbulb, color: 'text-orange-400' },
+  { value: 'tutorial', label: '教程', icon: BookOpen, color: 'text-sys-info' },
+  { value: 'guide', label: '指南', icon: Sparkles, color: 'text-sys-primary' },
+  { value: 'announcement', label: '公告', icon: Megaphone, color: 'text-sys-text-success' },
+  { value: 'tips', label: '技巧', icon: Lightbulb, color: 'text-sys-text-warning' },
 ] as const;
 
 export default function ArticleEditor({ initialData, onSubmit, isEditing = false }: ArticleEditorProps) {
@@ -206,7 +206,7 @@ export default function ArticleEditor({ initialData, onSubmit, isEditing = false
   };
 
   return (
-    <div className="min-h-screen bg-black text-white py-8">
+    <div className="min-h-screen bg-sys-bg-page text-sys-text-base py-8">
       <div className="max-w-7xl mx-auto px-6">
         {/* 标题栏 */}
         <div className="flex items-center justify-between mb-8">
@@ -217,7 +217,7 @@ export default function ArticleEditor({ initialData, onSubmit, isEditing = false
             <button
               type="button"
               onClick={() => setShowPreview(!showPreview)}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-sys-bg-elevated/70 hover:bg-sys-bg-elevated transition-colors"
             >
               <Eye size={18} />
               {showPreview ? '编辑' : '预览'}
@@ -237,7 +237,7 @@ export default function ArticleEditor({ initialData, onSubmit, isEditing = false
                   value={formData.title}
                   onChange={handleTitleChange}
                   placeholder="输入文章标题..."
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:border-purple-500 focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-lg bg-sys-bg-surface border border-sys-border focus:border-sys-primary focus:outline-none transition-colors"
                   required
                 />
               </div>
@@ -246,7 +246,7 @@ export default function ArticleEditor({ initialData, onSubmit, isEditing = false
               <div>
                 <label className="block text-sm font-medium mb-2">
                   URL Slug *
-                  <span className="text-xs text-gray-500 ml-2">（文章的唯一标识）</span>
+                  <span className="text-xs text-sys-text-muted ml-2">（文章的唯一标识）</span>
                 </label>
                 <input
                   type="text"
@@ -256,7 +256,7 @@ export default function ArticleEditor({ initialData, onSubmit, isEditing = false
                     setAutoSlug(false);
                   }}
                   placeholder="article-url-slug"
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:border-purple-500 focus:outline-none transition-colors font-mono"
+                  className="w-full px-4 py-3 rounded-lg bg-sys-bg-surface border border-sys-border focus:border-sys-primary focus:outline-none transition-colors font-mono"
                   required
                 />
               </div>
@@ -269,7 +269,7 @@ export default function ArticleEditor({ initialData, onSubmit, isEditing = false
                   onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
                   placeholder="简短描述文章内容..."
                   rows={3}
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:border-purple-500 focus:outline-none transition-colors resize-none"
+                  className="w-full px-4 py-3 rounded-lg bg-sys-bg-surface border border-sys-border focus:border-sys-primary focus:outline-none transition-colors resize-none"
                   required
                 />
               </div>
@@ -284,42 +284,42 @@ export default function ArticleEditor({ initialData, onSubmit, isEditing = false
                     <button
                       type="button"
                       onClick={() => insertTemplate(templates.heading)}
-                      className="text-xs px-2 py-1 rounded bg-white/5 hover:bg-white/10 transition-colors"
+                      className="text-xs px-2 py-1 rounded bg-sys-bg-surface hover:bg-sys-bg-elevated transition-colors"
                     >
                       标题
                     </button>
                     <button
                       type="button"
                       onClick={() => insertTemplate(templates.list)}
-                      className="text-xs px-2 py-1 rounded bg-white/5 hover:bg-white/10 transition-colors"
+                      className="text-xs px-2 py-1 rounded bg-sys-bg-surface hover:bg-sys-bg-elevated transition-colors"
                     >
                       列表
                     </button>
                     <button
                       type="button"
                       onClick={() => insertTemplate(templates.code)}
-                      className="text-xs px-2 py-1 rounded bg-white/5 hover:bg-white/10 transition-colors"
+                      className="text-xs px-2 py-1 rounded bg-sys-bg-surface hover:bg-sys-bg-elevated transition-colors"
                     >
                       代码
                     </button>
                     <button
                       type="button"
                       onClick={() => insertTemplate(templates.quote)}
-                      className="text-xs px-2 py-1 rounded bg-white/5 hover:bg-white/10 transition-colors"
+                      className="text-xs px-2 py-1 rounded bg-sys-bg-surface hover:bg-sys-bg-elevated transition-colors"
                     >
                       引用
                     </button>
                     <button
                       type="button"
                       onClick={() => insertTemplate(templates.table)}
-                      className="text-xs px-2 py-1 rounded bg-white/5 hover:bg-white/10 transition-colors"
+                      className="text-xs px-2 py-1 rounded bg-sys-bg-surface hover:bg-sys-bg-elevated transition-colors"
                     >
                       表格
                     </button>
                     <button
                       type="button"
                       onClick={() => insertTemplate(templates.image)}
-                      className="text-xs px-2 py-1 rounded bg-white/5 hover:bg-white/10 transition-colors"
+                      className="text-xs px-2 py-1 rounded bg-sys-bg-surface hover:bg-sys-bg-elevated transition-colors"
                     >
                       图片
                     </button>
@@ -340,8 +340,8 @@ export default function ArticleEditor({ initialData, onSubmit, isEditing = false
                     htmlFor="image-upload"
                     className={`flex items-center gap-2 px-3 py-1.5 rounded cursor-pointer transition-colors text-sm ${
                       uploadingImage 
-                        ? 'bg-gray-700 cursor-not-allowed' 
-                        : 'bg-purple-600 hover:bg-purple-700'
+                        ? 'bg-sys-bg-elevated text-sys-text-muted cursor-not-allowed'
+                        : 'bg-sys-primary text-sys-primary-text hover:bg-sys-primary-hover'
                     }`}
                   >
                     {uploadingImage ? (
@@ -356,7 +356,7 @@ export default function ArticleEditor({ initialData, onSubmit, isEditing = false
                       </>
                     )}
                   </label>
-                  <span className="text-xs text-gray-500">支持拖拽图片到编辑区域</span>
+                  <span className="text-xs text-sys-text-muted">支持拖拽图片到编辑区域</span>
                 </div>
 
                 <textarea
@@ -367,10 +367,10 @@ export default function ArticleEditor({ initialData, onSubmit, isEditing = false
                   onDragOver={handleDragOver}
                   placeholder="在这里编写文章内容...&#10;&#10;支持拖拽图片上传"
                   rows={20}
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:border-purple-500 focus:outline-none transition-colors resize-none font-mono text-sm"
+                  className="w-full px-4 py-3 rounded-lg bg-sys-bg-surface border border-sys-border focus:border-sys-primary focus:outline-none transition-colors resize-none font-mono text-sm"
                   required
                 />
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-sys-text-muted mt-1">
                   字数：{formData.content.length} | 预计阅读时长：{Math.max(1, Math.ceil(formData.content.length / 200 / 60))} 分钟
                 </p>
               </div>
@@ -391,8 +391,8 @@ export default function ArticleEditor({ initialData, onSubmit, isEditing = false
                         onClick={() => setFormData(prev => ({ ...prev, category: option.value }))}
                         className={`flex items-center gap-2 px-3 py-2 rounded-lg border transition-all ${
                           formData.category === option.value
-                            ? 'border-purple-500 bg-purple-500/20'
-                            : 'border-white/10 bg-white/5 hover:bg-white/10'
+                            ? 'border-sys-primary bg-sys-primary-subtle'
+                            : 'border-sys-border bg-sys-bg-surface hover:bg-sys-bg-elevated'
                         }`}
                       >
                         <Icon size={16} className={option.color} />
@@ -410,7 +410,7 @@ export default function ArticleEditor({ initialData, onSubmit, isEditing = false
                   type="text"
                   value={formData.author}
                   onChange={(e) => setFormData(prev => ({ ...prev, author: e.target.value }))}
-                  className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-purple-500 focus:outline-none transition-colors"
+                  className="w-full px-4 py-2 rounded-lg bg-sys-bg-surface border border-sys-border focus:border-sys-primary focus:outline-none transition-colors"
                 />
               </div>
 
@@ -424,12 +424,12 @@ export default function ArticleEditor({ initialData, onSubmit, isEditing = false
                     onChange={(e) => setTagInput(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTag())}
                     placeholder="输入标签..."
-                    className="flex-1 px-3 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-purple-500 focus:outline-none transition-colors text-sm"
+                    className="flex-1 px-3 py-2 rounded-lg bg-sys-bg-surface border border-sys-border focus:border-sys-primary focus:outline-none transition-colors text-sm"
                   />
                   <button
                     type="button"
                     onClick={handleAddTag}
-                    className="px-3 py-2 rounded-lg bg-purple-500 hover:bg-purple-600 transition-colors text-sm"
+                    className="px-3 py-2 rounded-lg bg-sys-primary text-sys-primary-text hover:bg-sys-primary-hover transition-colors text-sm"
                   >
                     添加
                   </button>
@@ -438,13 +438,13 @@ export default function ArticleEditor({ initialData, onSubmit, isEditing = false
                   {formData.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="flex items-center gap-1 px-3 py-1 rounded-full bg-white/10 text-sm"
+                      className="flex items-center gap-1 px-3 py-1 rounded-full bg-sys-bg-elevated/70 text-sm"
                     >
                       #{tag}
                       <button
                         type="button"
                         onClick={() => handleRemoveTag(tag)}
-                        className="hover:text-red-400 transition-colors"
+                        className="hover:text-sys-text-danger transition-colors"
                       >
                         <X size={14} />
                       </button>
@@ -461,14 +461,14 @@ export default function ArticleEditor({ initialData, onSubmit, isEditing = false
                   value={formData.coverImage}
                   onChange={(e) => setFormData(prev => ({ ...prev, coverImage: e.target.value }))}
                   placeholder="https://example.com/cover.jpg"
-                  className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-purple-500 focus:outline-none transition-colors"
+                  className="w-full px-4 py-2 rounded-lg bg-sys-bg-surface border border-sys-border focus:border-sys-primary focus:outline-none transition-colors"
                 />
                 {formData.coverImage && (
                   <div className="mt-2">
                     <img 
                       src={formData.coverImage} 
                       alt="封面预览" 
-                      className="w-full h-32 object-cover rounded-lg border border-white/10"
+                      className="w-full h-32 object-cover rounded-lg border border-sys-border"
                     />
                   </div>
                 )}
@@ -476,40 +476,40 @@ export default function ArticleEditor({ initialData, onSubmit, isEditing = false
 
               {/* 开关选项 */}
               <div className="space-y-3">
-                <label className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10">
+                <label className="flex items-center justify-between p-3 rounded-lg bg-sys-bg-surface border border-sys-border">
                   <div>
                     <div className="font-medium text-sm">推荐文章</div>
-                    <div className="text-xs text-gray-500">在文档页推荐显示</div>
+                    <div className="text-xs text-sys-text-muted">在文档页推荐显示</div>
                   </div>
                   <button
                     type="button"
                     onClick={() => setFormData(prev => ({ ...prev, featured: !prev.featured }))}
                     className={`relative w-12 h-6 rounded-full transition-colors ${
-                      formData.featured ? 'bg-purple-500' : 'bg-gray-700'
+                      formData.featured ? 'bg-sys-primary text-sys-primary-text' : 'bg-sys-bg-elevated'
                     }`}
                   >
                     <span
-                      className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-transform ${
+                      className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-sys-control-thumb transition-transform ${
                         formData.featured ? 'translate-x-6' : ''
                       }`}
                     />
                   </button>
                 </label>
 
-                <label className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10">
+                <label className="flex items-center justify-between p-3 rounded-lg bg-sys-bg-surface border border-sys-border">
                   <div>
                     <div className="font-medium text-sm">发布文章</div>
-                    <div className="text-xs text-gray-500">取消勾选则保存为草稿</div>
+                    <div className="text-xs text-sys-text-muted">取消勾选则保存为草稿</div>
                   </div>
                   <button
                     type="button"
                     onClick={() => setFormData(prev => ({ ...prev, published: !prev.published }))}
                     className={`relative w-12 h-6 rounded-full transition-colors ${
-                      formData.published ? 'bg-green-500' : 'bg-gray-700'
+                      formData.published ? 'bg-sys-text-success text-sys-primary-text' : 'bg-sys-bg-elevated'
                     }`}
                   >
                     <span
-                      className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-transform ${
+                      className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-sys-control-thumb transition-transform ${
                         formData.published ? 'translate-x-6' : ''
                       }`}
                     />
@@ -521,11 +521,11 @@ export default function ArticleEditor({ initialData, onSubmit, isEditing = false
               <button
                 type="submit"
                 disabled={isSaving || uploadingImage}
-                className="w-full py-3 rounded-lg bg-purple-600 hover:bg-purple-700 disabled:bg-gray-700 disabled:cursor-not-allowed transition-colors font-medium flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-lg bg-sys-primary text-sys-primary-text hover:bg-sys-primary-hover disabled:bg-sys-bg-elevated disabled:text-sys-text-muted disabled:cursor-not-allowed transition-colors font-medium flex items-center justify-center gap-2"
               >
                 {isSaving ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <div className="w-4 h-4 border-2 border-sys-border-strong border-t-sys-border rounded-full animate-spin" />
                     保存中...
                   </>
                 ) : (

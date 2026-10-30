@@ -26,13 +26,13 @@ console.log(userInfo);
     <div className="flex items-center justify-center gap-3">
       <Link
         href="/docs/new"
-        className="px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 transition-colors text-sm font-medium"
+        className="px-4 py-2 rounded-lg bg-sys-primary text-sys-primary-text hover:bg-sys-primary-hover transition-colors text-sm font-medium"
       >
         创建文章
       </Link>
       <Link
         href="/docs/admin"
-        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors text-sm font-medium"
+        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-sys-bg-elevated/70 hover:bg-sys-bg-elevated transition-colors text-sm font-medium"
       >
         <Settings size={16} />
         管理文章

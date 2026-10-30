@@ -30,11 +30,11 @@ export default function CarouselDemo() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white py-20">
+    <div className="min-h-screen bg-sys-bg-page text-sys-text-base py-20">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-12 text-center">
           <h1 className="text-4xl font-bold mb-4">轮播图组件演示</h1>
-          <p className="text-gray-400">自适应容器大小，展示第一张和第二张的一半</p>
+          <p className="text-sys-text-secondary">自适应容器大小，展示第一张和第二张的一半</p>
         </div>
 
         {/* 演示 1：默认配置 */}
@@ -62,16 +62,16 @@ export default function CarouselDemo() {
           <div className="space-y-8">
             {/* 全宽 */}
             <div>
-              <p className="text-sm text-gray-500 mb-2">全宽容器</p>
-              <div className="border border-white/10 rounded-lg p-4">
+              <p className="text-sm text-sys-text-muted mb-2">全宽容器</p>
+              <div className="border border-sys-border rounded-lg p-4">
                 <Carousel items={customItems} />
               </div>
             </div>
 
             {/* 2/3 宽度 */}
             <div>
-              <p className="text-sm text-gray-500 mb-2">2/3 宽度容器</p>
-              <div className="w-2/3 border border-white/10 rounded-lg p-4">
+              <p className="text-sm text-sys-text-muted mb-2">2/3 宽度容器</p>
+              <div className="w-2/3 border border-sys-border rounded-lg p-4">
                 <Carousel items={customItems} />
               </div>
             </div>
@@ -79,12 +79,12 @@ export default function CarouselDemo() {
         </section>
 
         {/* 功能说明 */}
-        <section className="bg-white/5 rounded-2xl p-8 border border-white/10">
+        <section className="bg-sys-bg-surface rounded-2xl p-8 border border-sys-border">
           <h2 className="text-2xl font-semibold mb-6">✨ 核心特性</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <h3 className="font-semibold text-lg mb-2">📐 自适应布局</h3>
-              <ul className="text-gray-400 space-y-1 text-sm">
+              <ul className="text-sys-text-secondary space-y-1 text-sm">
                 <li>• 自动检测容器宽度</li>
                 <li>• 移动端：卡片占 85%</li>
                 <li>• 桌面端：卡片占 60%</li>
@@ -93,7 +93,7 @@ export default function CarouselDemo() {
             </div>
             <div>
               <h3 className="font-semibold text-lg mb-2">🎮 交互功能</h3>
-              <ul className="text-gray-400 space-y-1 text-sm">
+              <ul className="text-sys-text-secondary space-y-1 text-sm">
                 <li>• 左右箭头切换</li>
                 <li>• 底部指示器点击</li>
                 <li>• 无限循环轮播</li>

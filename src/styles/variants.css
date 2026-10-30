@@ -8,7 +8,7 @@
  * 这里告诉 Tailwind 如何识别暗色模式。
  *
  * 用法示例（一般情况下 sys-* 类名无需用到 dark:）：
- *   dark:text-white   → 仅在 .dark 下生效的 text-white
+ *   dark:underline    → 仅在 .dark 下显示下划线
  * =====================================================
  */
 

@@ -1,67 +1,40 @@
-/**
- * =====================================================
- *  base.css — 原有 shadcn/ui HSL 兼容变量 + 基础样式
- * =====================================================
- *
- * 保留这套变量是为了兼容已有代码中的 bg-background、
- * text-foreground、bg-card 等 Tailwind 类名。
- * 新代码请使用 sys-* 语义化类名（见 tailwind-theme.css）。
- * =====================================================
- */
-
+/* 全局初始化统一引用主题变量，颜色值集中维护在 themes/ 中。 */
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-  }
-
   * {
-    border-color: var(--border);
+    border-color: rgb(var(--sys-border));
+  }
+
+  html {
+    background-color: rgb(var(--sys-bg-page));
   }
 
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    background-color: rgb(var(--sys-bg-page));
+    color: rgb(var(--sys-text-base));
+    font-family: var(--font-geist-sans), sans-serif;
+    font-size: var(--sys-font-base);
+    font-weight: var(--sys-weight-normal);
+    line-height: var(--sys-leading-base);
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  input, textarea, select {
+    color: inherit;
+    accent-color: rgb(var(--sys-primary));
+  }
+
+  ::placeholder {
+    color: rgb(var(--sys-text-muted));
+    opacity: 1;
+  }
+
+  ::selection {
+    background-color: rgb(var(--sys-primary) / var(--sys-overlay-medium));
+    color: rgb(var(--sys-text-base));
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--sys-primary));
+    outline-offset: 3px;
   }
 }

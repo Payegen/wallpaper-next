@@ -97,7 +97,7 @@ export default function CollectionDetailPage() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-muted-foreground">加载中...</div>
+        <div className="text-sys-text-secondary">加载中...</div>
       </div>
     );
   }
@@ -105,7 +105,7 @@ export default function CollectionDetailPage() {
   if (!collection) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-muted-foreground">合集不存在</div>
+        <div className="text-sys-text-secondary">合集不存在</div>
       </div>
     );
   }
@@ -117,14 +117,14 @@ export default function CollectionDetailPage() {
         <div className="flex items-center gap-4 mb-8">
           <button
             onClick={() => router.push("/collections")}
-            className="p-2 hover:bg-muted rounded-lg transition-colors"
+            className="p-2 hover:bg-sys-bg-surface rounded-lg transition-colors"
           >
             <ArrowLeft size={24} />
           </button>
           <div className="flex-1">
             <h1 className="text-3xl font-bold mb-2">{collection.name}</h1>
             {collection.description && (
-              <p className="text-muted-foreground">{collection.description}</p>
+              <p className="text-sys-text-secondary">{collection.description}</p>
             )}
           </div>
           {isAdmin && (
@@ -135,7 +135,7 @@ export default function CollectionDetailPage() {
                 loadAllWallpapers();
                 setShowAddModal(true);
               }}
-              className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+              className="flex items-center gap-2 px-6 py-3 bg-sys-primary text-sys-primary-text rounded-lg hover:bg-sys-primary-hover transition-colors"
             >
               <Plus size={20} />
               添加壁纸
@@ -146,8 +146,8 @@ export default function CollectionDetailPage() {
         {/* 壁纸网格 */}
         {collection.wallpapers.length === 0 ? (
           <div className="text-center py-12">
-            <ImageIcon size={64} className="mx-auto mb-4 text-muted-foreground" />
-            <p className="text-muted-foreground">合集中还没有壁纸</p>
+            <ImageIcon size={64} className="mx-auto mb-4 text-sys-text-secondary" />
+            <p className="text-sys-text-secondary">合集中还没有壁纸</p>
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -157,7 +157,7 @@ export default function CollectionDetailPage() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 whileHover={{ scale: 1.05 }}
-                className="group relative aspect-video bg-muted rounded-lg overflow-hidden cursor-pointer"
+                className="group relative aspect-video bg-sys-bg-surface rounded-lg overflow-hidden cursor-pointer"
                 onClick={() => router.push(`/wallpaper/${wallpaper.id}`)}
               >
                 <img
@@ -165,9 +165,9 @@ export default function CollectionDetailPage() {
                   alt={wallpaper.title}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-linear-to-t from-sys-media-bg/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="absolute bottom-0 left-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <p className="text-white text-sm font-medium truncate">
+                  <p className="text-sys-media-text text-sm font-medium truncate">
                     {wallpaper.title}
                   </p>
                 </div>
@@ -177,9 +177,9 @@ export default function CollectionDetailPage() {
                       e.stopPropagation();
                       handleRemoveWallpaper(wallpaper.id);
                     }}
-                    className="absolute top-2 right-2 p-1.5 bg-black/50 hover:bg-black/70 rounded-full opacity-0 group-hover:opacity-100 transition-all"
+                    className="absolute top-2 right-2 p-1.5 bg-sys-media-bg/60 hover:bg-sys-media-bg/80 rounded-full opacity-0 group-hover:opacity-100 transition-all"
                   >
-                    <X size={14} className="text-white" />
+                    <X size={14} className="text-sys-media-text" />
                   </button>
                 )}
               </motion.div>
@@ -189,11 +189,11 @@ export default function CollectionDetailPage() {
 
         {/* 添加壁纸模态框 */}
         {showAddModal && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="fixed inset-0 bg-sys-bg-overlay/50 flex items-center justify-center z-50 p-4">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="bg-card border border-border rounded-lg p-6 max-w-4xl w-full max-h-[80vh] overflow-y-auto"
+              className="bg-sys-bg-surface border border-sys-border rounded-lg p-6 max-w-4xl w-full max-h-[80vh] overflow-y-auto"
             >
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-semibold">添加壁纸到合集</h2>
@@ -202,14 +202,14 @@ export default function CollectionDetailPage() {
                     setShowAddModal(false);
                     setSelectedWallpapers([]);
                   }}
-                  className="p-2 hover:bg-muted rounded-lg transition-colors"
+                  className="p-2 hover:bg-sys-bg-surface rounded-lg transition-colors"
                 >
                   <X size={20} />
                 </button>
               </div>
 
               {allWallpapers.length === 0 ? (
-                <p className="text-center text-muted-foreground py-8">
+                <p className="text-center text-sys-text-secondary py-8">
                   没有可添加的壁纸
                 </p>
               ) : (
@@ -225,9 +225,9 @@ export default function CollectionDetailPage() {
                               : [...prev, wallpaper.id]
                           );
                         }}
-                        className={`relative aspect-video bg-muted rounded-lg overflow-hidden cursor-pointer border-2 transition-colors ${
+                        className={`relative aspect-video bg-sys-bg-surface rounded-lg overflow-hidden cursor-pointer border-2 transition-colors ${
                           selectedWallpapers.includes(wallpaper.id)
-                            ? "border-primary"
+                            ? "border-sys-primary"
                             : "border-transparent"
                         }`}
                       >
@@ -237,9 +237,9 @@ export default function CollectionDetailPage() {
                           className="w-full h-full object-cover"
                         />
                         {selectedWallpapers.includes(wallpaper.id) && (
-                          <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
-                            <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
-                              <span className="text-primary-foreground text-sm">
+                          <div className="absolute inset-0 bg-sys-primary-subtle flex items-center justify-center">
+                            <div className="w-6 h-6 bg-sys-primary text-sys-primary-text rounded-full flex items-center justify-center">
+                              <span className="text-sys-primary-text text-sm">
                                 ✓
                               </span>
                             </div>
@@ -254,14 +254,14 @@ export default function CollectionDetailPage() {
                         setShowAddModal(false);
                         setSelectedWallpapers([]);
                       }}
-                      className="px-6 py-2 bg-muted text-muted-foreground rounded-lg hover:bg-muted/80 transition-colors"
+                      className="px-6 py-2 bg-sys-bg-surface text-sys-text-secondary rounded-lg hover:bg-sys-bg-surface/80 transition-colors"
                     >
                       取消
                     </button>
                     <button
                       onClick={handleAddWallpapers}
                       disabled={selectedWallpapers.length === 0}
-                      className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="px-6 py-2 bg-sys-primary text-sys-primary-text rounded-lg hover:bg-sys-primary-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       添加 ({selectedWallpapers.length})
                     </button>
