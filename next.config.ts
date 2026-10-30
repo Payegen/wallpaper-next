@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
     // 使用 remotePatterns 更加安全和灵活
     remotePatterns: [

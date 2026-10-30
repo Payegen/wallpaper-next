@@ -1,6 +1,7 @@
 'use server';
 
 import { prisma } from '@/lib/prisma'; // 你需要单独封装一个 prisma client 实例
+import type { Prisma } from '@/generated/prisma/client';
 import { getUploadUrl } from '@/lib/r2';
 import { revalidatePath } from 'next/cache';
 import { requireAdmin } from '@/lib/auth';
@@ -82,7 +83,7 @@ export async function getAllWallpaper(params?: {
     const { search, tags, source, collectionId, page = 1, pageSize = 20 } = params || {};
     const skip = (page - 1) * pageSize;
 
-    const where = {
+    const where: Prisma.WallpaperWhereInput = {
       // 搜索标题或描述
       ...(search && {
         OR: [

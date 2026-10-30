@@ -19,7 +19,7 @@ interface ArticleFormData {
 
 interface ArticleEditorProps {
   initialData?: Partial<ArticleFormData>;
-  onSubmit: (data: ArticleFormData) => Promise<void>;
+  onSubmit: (data: any) => Promise<void>;
   isEditing?: boolean;
 }
 

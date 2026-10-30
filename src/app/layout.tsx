@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css"
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navbar } from "@/components/layout/Navbar";
-import RouteLoading from "@/components/layout/RouteLoading";
+// import RouteLoading from "@/components/layout/RouteLoading";
 import { ClerkProvider } from '@clerk/nextjs'
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   // variable: "--font-geist-sans",
+//   // subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   // variable: "--font-geist-mono",
+//   // subsets: ["latin"],
+// });
 
 export const metadata: Metadata = {
   title: "Wallpaper Next - 你的云端桌面",
@@ -48,11 +48,11 @@ export default function RootLayout({
     >
     <html lang="zh-CN" suppressHydrationWarning>
       <body
-        className={cn(geistSans.variable, geistMono.variable,
+        className={cn(
           "antialiased bg-sys-bg-page text-sys-text-base")}
       >
         {/* 路由切换进度条 */}
-        <RouteLoading />
+        {/* <RouteLoading /> */}
         
         <ThemeProvider
           attribute="class"
